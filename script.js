@@ -4,42 +4,48 @@
  */
 
 // ==========================================================================
-// EMAILJS CONFIGURATION
+// FORMSPREE CONFIGURATION
 // Destination: binoysarker2003@gmail.com
-// Official Documentation: https://www.emailjs.com/docs/
+// Official Documentation: https://formspree.io/
 // ==========================================================================
 /**
- * Configuration for direct email dispatch via EmailJS (Browser SDK v4).
+ * Configuration for direct email dispatch via Formspree.
  * 
- * Replace the placeholders below with the keys from your EmailJS Dashboard:
- * 1. publicKey: Account -> General -> "Public Key" (e.g. "x1Y2z3A4B5C6D7E8F")
- * 2. serviceId: Email Services -> Service ID (e.g. "service_gmail" or "service_xxxx")
- * 3. contactTemplateId: Email Templates -> Template ID for Contact Form (e.g. "template_contact")
- * 4. researchTemplateId: Email Templates -> Template ID for Research Idea Form (e.g. "template_research")
+ * Replace the placeholder values with your real Formspree Form ID or full endpoint URL:
+ * - contactFormEndpoint: e.g. 'https://formspree.io/f/xyzab123' (or just 'xyzab123')
+ * - researchFormEndpoint: e.g. 'https://formspree.io/f/abcde789' (or just 'abcde789')
+ * 
+ * Note: You can create two separate forms on Formspree (recommended for separate email notifications),
+ * or share a single Formspree form endpoint for both.
  */
-const EMAILJS_CONFIG = {
-  publicKey: 'YOUR_EMAILJS_PUBLIC_KEY',
-  serviceId: 'YOUR_EMAILJS_SERVICE_ID',
-  contactTemplateId: 'YOUR_CONTACT_TEMPLATE_ID',
-  researchTemplateId: 'YOUR_RESEARCH_TEMPLATE_ID',
+const FORMSPREE_CONFIG = {
+  contactFormEndpoint: 'https://formspree.io/f/YOUR_CONTACT_FORMSPREE_ID',
+  researchFormEndpoint: 'https://formspree.io/f/YOUR_RESEARCH_FORMSPREE_ID',
 };
 
+// Resolves a form ID or URL into a full Formspree endpoint URL
+function resolveFormspreeEndpoint(endpointOrId) {
+  if (!endpointOrId || typeof endpointOrId !== 'string') return '';
+  const trimmed = endpointOrId.trim();
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+    return trimmed;
+  }
+  return `https://formspree.io/f/${trimmed}`;
+}
+
 // Helper to verify whether real credentials have replaced placeholder values
-function isConfigPlaceholder(val) {
-  return !val || typeof val !== 'string' || val.trim() === '' || val.startsWith('YOUR_');
+function isFormspreePlaceholder(val) {
+  if (!val || typeof val !== 'string') return true;
+  const trimmed = val.trim();
+  return (
+    trimmed === '' ||
+    trimmed.includes('YOUR_') ||
+    trimmed.includes('YOUR_CONTACT_FORMSPREE_ID') ||
+    trimmed.includes('YOUR_RESEARCH_FORMSPREE_ID')
+  );
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize EmailJS if valid public key is configured
-  if (typeof emailjs !== 'undefined' && !isConfigPlaceholder(EMAILJS_CONFIG.publicKey)) {
-    try {
-      emailjs.init({
-        publicKey: EMAILJS_CONFIG.publicKey,
-      });
-    } catch (initErr) {
-      console.warn('EmailJS initialization notice:', initErr);
-    }
-  }
 
   // 1. Dynamic Copyright Year
   const yearElement = document.getElementById('current-year');
@@ -299,7 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.removeChild(textArea);
   }
 
-  // 9. Share Your Research Idea Form Handler (EmailJS Integration)
+  // 9. Share Your Research Idea Form Handler (Formspree Integration)
   const ideaForm = document.getElementById('research-idea-form');
   const ideaFeedback = document.getElementById('idea-feedback');
   const ideaSubmitBtn = document.getElementById('idea-submit-btn');
@@ -309,7 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ideaForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      if (isSubmittingIdea) return; // Prevent duplicate submissions while in progress
+      if (isSubmittingIdea) return; // Prevent duplicate clicks while in progress
 
       const nameInput = document.getElementById('idea-name');
       const emailInput = document.getElementById('idea-email');
@@ -327,6 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const linkError = document.getElementById('idea-link-error');
 
       let isValid = true;
+      ideaFeedback.setAttribute('hidden', '');
 
       // Name validation
       if (!nameInput.value.trim()) {
@@ -388,81 +395,88 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!isValid) return;
 
-      const templateParams = {
-        to_email: 'binoysarker2003@gmail.com',
-        from_name: nameInput.value.trim(),
-        reply_to: emailInput.value.trim(),
-        from_email: emailInput.value.trim(),
+      const targetEndpoint = resolveFormspreeEndpoint(
+        FORMSPREE_CONFIG.researchFormEndpoint || ideaForm.getAttribute('action')
+      );
+
+      // Check if Formspree endpoint is configured or placeholder
+      if (isFormspreePlaceholder(targetEndpoint)) {
+        ideaFeedback.className = 'form-feedback feedback-info';
+        ideaFeedback.innerHTML = `
+          <strong>Proposal Validated (Formspree Setup Step Required):</strong><br>
+          Thank you, <em>${escapeHTML(nameInput.value.trim())}</em>! Your research proposal "<strong>${escapeHTML(titleInput.value.trim())}</strong>" in the domain <em>${escapeHTML(areaSelect.value)}</em> has passed all client-side validation checks.<br><br>
+          To automatically route live submissions to <strong>binoysarker2003@gmail.com</strong>, configure your Formspree Form ID in <code>FORMSPREE_CONFIG</code> at the top of <code>script.js</code>:<br>
+          • Replace <code>'YOUR_RESEARCH_FORMSPREE_ID'</code> with your Formspree ID (e.g. <code>https://formspree.io/f/mqkbrzen</code>).<br><br>
+          <span style="color: #A0A0A0; font-size: 0.85rem;">
+            Direct inquiries can also be sent directly to <a href="mailto:binoysarker2003@gmail.com" class="email-clickable">binoysarker2003@gmail.com</a>.
+          </span>
+        `;
+        ideaFeedback.removeAttribute('hidden');
+        showToast('Idea validated. Enter Formspree ID in script.js to send email.');
+        return;
+      }
+
+      const payload = {
+        name: nameInput.value.trim(),
+        email: emailInput.value.trim(),
+        _replyto: emailInput.value.trim(),
         idea_title: titleInput.value.trim(),
         idea_area: areaSelect.value,
         idea_stage: stageSelect.value || 'Not specified',
         idea_description: descInput.value.trim(),
         idea_link: linkVal || 'None provided',
+        _subject: `[Research Idea] ${titleInput.value.trim()} [${areaSelect.value}] - from ${nameInput.value.trim()}`,
         submitted_at: new Date().toLocaleString('en-US', {
           dateStyle: 'full',
           timeStyle: 'medium'
         })
       };
 
-      // Check if EmailJS credentials are configured or placeholder
-      if (
-        isConfigPlaceholder(EMAILJS_CONFIG.publicKey) ||
-        isConfigPlaceholder(EMAILJS_CONFIG.serviceId) ||
-        isConfigPlaceholder(EMAILJS_CONFIG.researchTemplateId)
-      ) {
-        ideaFeedback.className = 'form-feedback feedback-info';
-        ideaFeedback.innerHTML = `
-          <strong>Proposal Validated (Awaiting EmailJS Credentials):</strong><br>
-          Thank you, <em>${escapeHTML(templateParams.from_name)}</em>! Your research proposal "<strong>${escapeHTML(templateParams.idea_title)}</strong>" in the domain <em>${escapeHTML(templateParams.idea_area)}</em> has passed all client-side validation checks.<br><br>
-          To automatically route live submissions to <strong>binoysarker2003@gmail.com</strong>, configure your EmailJS keys in <code>EMAILJS_CONFIG</code> at the top of <code>script.js</code>:<br>
-          • <code>publicKey</code>: Replace <code>'YOUR_EMAILJS_PUBLIC_KEY'</code><br>
-          • <code>serviceId</code>: Replace <code>'YOUR_EMAILJS_SERVICE_ID'</code><br>
-          • <code>researchTemplateId</code>: Replace <code>'YOUR_RESEARCH_TEMPLATE_ID'</code><br><br>
-          <span style="color: #A0A0A0; font-size: 0.85rem;">
-            Direct inquiries can also be sent directly to <a href="mailto:binoysarker2003@gmail.com" class="email-clickable">binoysarker2003@gmail.com</a>.
-          </span>
-        `;
-        ideaFeedback.removeAttribute('hidden');
-        showToast('Idea validated. Enter EmailJS keys in script.js to send email.');
-        return;
-      }
-
-      // Live EmailJS Transmission
+      // Live Formspree Transmission via fetch
       isSubmittingIdea = true;
       setButtonLoading(ideaSubmitBtn, true, 'Submitting Idea...');
       ideaFeedback.setAttribute('hidden', '');
 
       try {
-        if (typeof emailjs === 'undefined') {
-          throw new Error('EmailJS SDK is not loaded. Please check your network connection.');
-        }
+        const response = await fetch(targetEndpoint, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
 
-        const response = await emailjs.send(
-          EMAILJS_CONFIG.serviceId,
-          EMAILJS_CONFIG.researchTemplateId,
-          templateParams,
-          EMAILJS_CONFIG.publicKey
-        );
-
-        if (response && (response.status === 200 || response.text === 'OK')) {
+        if (response.ok) {
           ideaFeedback.className = 'form-feedback feedback-success';
           ideaFeedback.innerHTML = `
             <strong>Research Idea Transmitted Successfully:</strong><br>
-            Thank you, <em>${escapeHTML(templateParams.from_name)}</em>. Your research idea "<strong>${escapeHTML(templateParams.idea_title)}</strong>" in <em>${escapeHTML(templateParams.idea_area)}</em> has been forwarded directly to Binoy Sarker (<code>binoysarker2003@gmail.com</code>). We look forward to exploring this collaborative direction.
+            Thank you, <em>${escapeHTML(payload.name)}</em>. Your research idea "<strong>${escapeHTML(payload.idea_title)}</strong>" in <em>${escapeHTML(payload.idea_area)}</em> has been forwarded directly to Binoy Sarker (<code>binoysarker2003@gmail.com</code>). We look forward to exploring this collaborative direction.
           `;
           ideaFeedback.removeAttribute('hidden');
           ideaForm.reset();
           showToast('Research idea transmitted to binoysarker2003@gmail.com.');
         } else {
-          throw new Error(response ? `Status ${response.status}: ${response.text}` : 'Email transmission failed.');
+          let errorDetail = 'Formspree submission failed';
+          try {
+            const data = await response.json();
+            if (data && data.errors && Array.isArray(data.errors) && data.errors.length > 0) {
+              errorDetail = data.errors.map(err => err.message || err.field).join(', ');
+            } else if (data && data.error) {
+              errorDetail = data.error;
+            }
+          } catch (_) {
+            errorDetail = `Server returned status ${response.status}`;
+          }
+          throw new Error(errorDetail);
         }
       } catch (err) {
-        console.error('EmailJS Research Idea Delivery Error:', err);
+        console.error('Formspree Research Idea Delivery Error:', err);
         ideaFeedback.className = 'form-feedback feedback-error';
         ideaFeedback.innerHTML = `
           <strong>Submission Service Error:</strong><br>
-          Unable to deliver idea via EmailJS (${escapeHTML(err.text || err.message || 'Network error')}).<br>
-          Please verify your Service ID and Template ID in <code>script.js</code>, or send your proposal directly to <a href="mailto:binoysarker2003@gmail.com" class="email-clickable">binoysarker2003@gmail.com</a>.
+          Unable to deliver proposal via Formspree (${escapeHTML(err.message || 'Network error')}).<br>
+          Please verify your Formspree endpoint in <code>script.js</code>, or send your proposal directly to <a href="mailto:binoysarker2003@gmail.com" class="email-clickable">binoysarker2003@gmail.com</a>.
         `;
         ideaFeedback.removeAttribute('hidden');
         showToast('Submission error. Please email binoysarker2003@gmail.com directly.');
@@ -473,7 +487,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 10. Contact Form Handler (EmailJS Integration)
+  // 10. Contact Form Handler (Formspree Integration)
   const contactForm = document.getElementById('contact-form');
   const formFeedback = document.getElementById('form-feedback');
   const contactSubmitBtn = document.getElementById('contact-submit-btn');
@@ -483,7 +497,7 @@ document.addEventListener('DOMContentLoaded', () => {
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      if (isSubmittingContact) return; // Prevent duplicate submissions while in progress
+      if (isSubmittingContact) return; // Prevent duplicate clicks while in progress
 
       const nameInput = document.getElementById('form-name');
       const emailInput = document.getElementById('form-email');
@@ -496,6 +510,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const messageError = document.getElementById('message-error');
 
       let isValid = true;
+      formFeedback.setAttribute('hidden', '');
 
       // Name validation
       if (!nameInput.value.trim()) {
@@ -532,78 +547,85 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!isValid) return;
 
-      const templateParams = {
-        to_email: 'binoysarker2003@gmail.com',
-        from_name: nameInput.value.trim(),
-        reply_to: emailInput.value.trim(),
-        from_email: emailInput.value.trim(),
+      const targetEndpoint = resolveFormspreeEndpoint(
+        FORMSPREE_CONFIG.contactFormEndpoint || contactForm.getAttribute('action')
+      );
+
+      // Check if Formspree endpoint is configured or placeholder
+      if (isFormspreePlaceholder(targetEndpoint)) {
+        formFeedback.className = 'form-feedback feedback-info';
+        formFeedback.innerHTML = `
+          <strong>Message Validated (Formspree Setup Step Required):</strong><br>
+          Thank you, <em>${escapeHTML(nameInput.value.trim())}</em>! All form fields have passed validation.<br><br>
+          To automatically route messages to <strong>binoysarker2003@gmail.com</strong>, configure your Formspree Form ID in <code>FORMSPREE_CONFIG</code> at the top of <code>script.js</code>:<br>
+          • Replace <code>'YOUR_CONTACT_FORMSPREE_ID'</code> with your Formspree ID (e.g. <code>https://formspree.io/f/xpwzqalb</code>).<br><br>
+          <span style="color: #A0A0A0; font-size: 0.85rem;">
+            Direct inquiries can also be sent directly to <a href="mailto:binoysarker2003@gmail.com" class="email-clickable">binoysarker2003@gmail.com</a>.
+          </span>
+        `;
+        formFeedback.removeAttribute('hidden');
+        showToast('Message validated. Enter Formspree ID in script.js to send email.');
+        return;
+      }
+
+      const payload = {
+        name: nameInput.value.trim(),
+        email: emailInput.value.trim(),
+        _replyto: emailInput.value.trim(),
         subject: subjectInput.value.trim(),
         message: messageInput.value.trim(),
+        _subject: `[Portfolio Inquiry] ${subjectInput.value.trim()} - from ${nameInput.value.trim()}`,
         submitted_at: new Date().toLocaleString('en-US', {
           dateStyle: 'full',
           timeStyle: 'medium'
         })
       };
 
-      // Check if EmailJS credentials are configured or placeholder
-      if (
-        isConfigPlaceholder(EMAILJS_CONFIG.publicKey) ||
-        isConfigPlaceholder(EMAILJS_CONFIG.serviceId) ||
-        isConfigPlaceholder(EMAILJS_CONFIG.contactTemplateId)
-      ) {
-        formFeedback.className = 'form-feedback feedback-info';
-        formFeedback.innerHTML = `
-          <strong>Message Validated (Awaiting EmailJS Credentials):</strong><br>
-          Thank you, <em>${escapeHTML(templateParams.from_name)}</em>! Your message has passed all validation checks.<br><br>
-          To automatically route messages to <strong>binoysarker2003@gmail.com</strong>, configure your EmailJS keys in <code>EMAILJS_CONFIG</code> at the top of <code>script.js</code>:<br>
-          • <code>publicKey</code>: Replace <code>'YOUR_EMAILJS_PUBLIC_KEY'</code><br>
-          • <code>serviceId</code>: Replace <code>'YOUR_EMAILJS_SERVICE_ID'</code><br>
-          • <code>contactTemplateId</code>: Replace <code>'YOUR_CONTACT_TEMPLATE_ID'</code><br><br>
-          <span style="color: #A0A0A0; font-size: 0.85rem;">
-            Direct inquiries can also be sent directly to <a href="mailto:binoysarker2003@gmail.com" class="email-clickable">binoysarker2003@gmail.com</a>.
-          </span>
-        `;
-        formFeedback.removeAttribute('hidden');
-        showToast('Message validated. Enter EmailJS keys in script.js to send email.');
-        return;
-      }
-
-      // Live EmailJS Transmission
+      // Live Formspree Transmission via fetch
       isSubmittingContact = true;
       setButtonLoading(contactSubmitBtn, true, 'Sending message...');
       formFeedback.setAttribute('hidden', '');
 
       try {
-        if (typeof emailjs === 'undefined') {
-          throw new Error('EmailJS SDK is not loaded. Please check your network connection.');
-        }
+        const response = await fetch(targetEndpoint, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
 
-        const response = await emailjs.send(
-          EMAILJS_CONFIG.serviceId,
-          EMAILJS_CONFIG.contactTemplateId,
-          templateParams,
-          EMAILJS_CONFIG.publicKey
-        );
-
-        if (response && (response.status === 200 || response.text === 'OK')) {
+        if (response.ok) {
           formFeedback.className = 'form-feedback feedback-success';
           formFeedback.innerHTML = `
             <strong>Message Sent Successfully:</strong><br>
-            Thank you, <em>${escapeHTML(templateParams.from_name)}</em>. Your inquiry regarding "<strong>${escapeHTML(templateParams.subject)}</strong>" has been delivered directly to Binoy Sarker (<code>binoysarker2003@gmail.com</code>). You will receive a response shortly.
+            Thank you, <em>${escapeHTML(payload.name)}</em>. Your inquiry regarding "<strong>${escapeHTML(payload.subject)}</strong>" has been delivered directly to Binoy Sarker (<code>binoysarker2003@gmail.com</code>). You will receive a response shortly.
           `;
           formFeedback.removeAttribute('hidden');
           contactForm.reset();
           showToast('Message delivered to binoysarker2003@gmail.com.');
         } else {
-          throw new Error(response ? `Status ${response.status}: ${response.text}` : 'Email transmission failed.');
+          let errorDetail = 'Formspree submission failed';
+          try {
+            const data = await response.json();
+            if (data && data.errors && Array.isArray(data.errors) && data.errors.length > 0) {
+              errorDetail = data.errors.map(err => err.message || err.field).join(', ');
+            } else if (data && data.error) {
+              errorDetail = data.error;
+            }
+          } catch (_) {
+            errorDetail = `Server returned status ${response.status}`;
+          }
+          throw new Error(errorDetail);
         }
       } catch (err) {
-        console.error('EmailJS Contact Form Delivery Error:', err);
+        console.error('Formspree Contact Form Delivery Error:', err);
         formFeedback.className = 'form-feedback feedback-error';
         formFeedback.innerHTML = `
           <strong>Message Delivery Error:</strong><br>
-          Unable to deliver message via EmailJS (${escapeHTML(err.text || err.message || 'Network error')}).<br>
-          Please verify your Service ID and Template ID in <code>script.js</code>, or email directly at <a href="mailto:binoysarker2003@gmail.com" class="email-clickable">binoysarker2003@gmail.com</a>.
+          Unable to deliver message via Formspree (${escapeHTML(err.message || 'Network error')}).<br>
+          Please verify your Formspree endpoint in <code>script.js</code>, or email directly at <a href="mailto:binoysarker2003@gmail.com" class="email-clickable">binoysarker2003@gmail.com</a>.
         `;
         formFeedback.removeAttribute('hidden');
         showToast('Delivery error. Please email binoysarker2003@gmail.com directly.');
