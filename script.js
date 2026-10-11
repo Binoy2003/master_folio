@@ -636,6 +636,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // 10b. Collapsible Web Form Toggle Handler
+  const toggleContactBtn = document.getElementById('toggle-contact-form-btn');
+  const expandableForm = document.getElementById('contact-form-expandable');
+  if (toggleContactBtn && expandableForm) {
+    toggleContactBtn.addEventListener('click', () => {
+      const isHidden = expandableForm.hasAttribute('hidden');
+      const label = toggleContactBtn.querySelector('#toggle-btn-label');
+      const chevron = toggleContactBtn.querySelector('.toggle-chevron');
+
+      if (isHidden) {
+        expandableForm.removeAttribute('hidden');
+        toggleContactBtn.setAttribute('aria-expanded', 'true');
+        if (label) label.textContent = 'Hide web message form';
+        if (chevron) chevron.textContent = '↑';
+      } else {
+        expandableForm.setAttribute('hidden', '');
+        toggleContactBtn.setAttribute('aria-expanded', 'false');
+        if (label) label.textContent = 'Or send a message via web form';
+        if (chevron) chevron.textContent = '↓';
+      }
+    });
+  }
+
   // 11. Optional Client-Side GitHub API Enrichment
   // Gracefully attempts to fetch latest repositories without throwing errors if rate-limited or offline
   async function enrichGitHubProjects() {
