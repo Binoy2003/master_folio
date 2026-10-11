@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binoy Sarker | Personal Portfolio</title>
+  <meta name="description" content="Personal portfolio of Binoy Sarker — CSE undergraduate at United International University interested in Data Science, technology, and feature writing.">
+  <meta name="author" content="Binoy Sarker">
+  
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Binoy Sarker | Personal Portfolio">
+  <meta property="og:description" content="CSE Undergraduate at UIU & Features Writer. Exploring data analysis, artificial intelligence, and human stories through technology.">
+  <meta property="og:image" content="assets/profile.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Binoy Sarker | Personal Portfolio">
+  <meta name="twitter:description" content="CSE Undergraduate at UIU & Features Writer. Exploring data analysis, artificial intelligence, and human stories through technology.">
+
+  <!-- Minimal Monochrome Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23171717'/><circle cx='50' cy='50' r='36' fill='%23222222' stroke='%23F5F5F5' stroke-width='4'/><text x='50' y='61' font-family='sans-serif' font-size='34' font-weight='bold' fill='%23FFFFFF' text-anchor='middle'>B</text></svg>">
+
+  <!-- Typography: Inter & JetBrains Mono for clean editorial sans-serif aesthetic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Skip to Content for Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Main Outer Shell -->
+  <div class="site-wrapper">
+    <!-- Centered Charcoal Content Panel -->
+    <div class="content-panel">
+
+      <!-- Editorial Header / Top Navigation -->
+      <header class="site-header" id="top">
+        <div class="header-inner">
+          <div class="brand">
+            <a href="#top" class="brand-link" aria-label="Binoy Sarker Home">
+              <span class="brand-name">Binoy Sarker</span>
+              <span class="brand-sub">CSE / Editorial</span>
+            </a>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <nav class="desktop-nav" aria-label="Primary Navigation">
+            <ul class="nav-list">
+              <li><a href="#hero" class="nav-link active">Home</a></li>
+              <li><a href="#articles" class="nav-link">Articles</a></li>
+              <li><a href="#archives" class="nav-link">Archives</a></li>
+              <li><a href="#projects" class="nav-link">Projects</a></li>
+              <li><a href="#about" class="nav-link">About</a></li>
+              <li><a href="#skills" class="nav-link">Skills</a></li>
+              <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+          </nav>
+
+          <!-- Mobile Menu Button -->
+          <button class="mobile-menu-btn" id="mobile-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Toggle navigation menu">
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+          </button>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile Navigation" hidden>
+          <ul class="mobile-nav-list">
+            <li><a href="#hero" class="mobile-nav-link">Home</a></li>
+            <li><a href="#articles" class="mobile-nav-link">Articles</a></li>
+            <li><a href="#archives" class="mobile-nav-link">Archives</a></li>
+            <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
+            <li><a href="#about" class="mobile-nav-link">About</a></li>
+            <li><a href="#skills" class="mobile-nav-link">Skills & Interests</a></li>
+            <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Main Content Area -->
+      <main id="main-content">
+
+        <!-- Two-Column Hero & Editorial Section -->
+        <section class="editorial-hero" id="hero">
+          
+          <!-- LEFT COLUMN: Profile, Heading & Narrative Intro -->
+          <div class="hero-left reveal-on-scroll">
+            <div class="name-block">
+              <h1 class="hero-name">Binoy Sarker</h1>
+              <p class="hero-identity">CSE Undergraduate <span class="divider-sep">|</span> Features Writer</p>
+            </div>
+
+            <!-- Profile Portrait Container -->
+            <div class="portrait-wrapper">
+              <div class="portrait-frame">
+                <img 
+                  src="assets/profile.png" 
+                  alt="Portrait photograph of Binoy Sarker" 
+                  class="portrait-img"
+                  loading="eager"
+                  width="540"
+                  height="640"
+                >
+              </div>
+              <div class="portrait-caption">
+                <span class="caption-marker">●</span>
+                <span class="caption-text">United International University, Dhaka — Student & Writer</span>
+              </div>
+            </div>
+
+            <!-- Editorial Introduction -->
+            <div class="hero-summary">
+              <p class="lead-text">
+                I am a Computer Science and Engineering undergraduate interested in understanding data, exploring technology, and telling meaningful stories through information.
+              </p>
+            </div>
+
+            <!-- Quick Navigation Action Links -->
+            <div class="hero-actions">
+              <a href="#projects" class="btn btn-primary">
+                Explore My Work <span class="arrow-icon" aria-hidden="true">→</span>
+              </a>
+              <a href="#about" class="btn btn-outline">About Me</a>
+              <a href="#contact" class="btn btn-outline">Contact</a>
+            </div>
+
+            <!-- Minimal Social Links -->
+            <div class="hero-social">
+              <span class="social-label">Connect:</span>
+              <a href="https://linkedin.com/in/binoysarker2003/" target="_blank" rel="noopener noreferrer" class="social-link">
+                LinkedIn <span class="arrow-up-right" aria-hidden="true">↗</span>
+              </a>
+              <span class="social-dot" aria-hidden="true">/</span>
+              <a href="https://github.com/Binoy2003" target="_blank" rel="noopener noreferrer" class="social-link">
+                GitHub <span class="arrow-up-right" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: Featured Articles Section -->
+          <div class="hero-right reveal-on-scroll" id="articles">
+            <div class="articles-header">
+              <h2 class="section-heading">Featured Articles</h2>
+              <span class="editorial-meta-tag">Writings & Explorations</span>
+            </div>
+            <p class="articles-subtext">
+              Selected essays, analytical drafts, and reflections on computer science, data inquiry, and technology narratives.
+            </p>
+
+            <div class="articles-list" role="list">
+              <!-- Article 1 -->
+              <article class="article-item" role="listitem" data-article-id="art-1">
+                <button type="button" class="article-button" aria-expanded="false">
+                  <div class="article-info">
+                    <span class="article-index">01</span>
+                    <div class="article-titles">
+                      <h3 class="article-title">Understanding Data in a World Full of Information</h3>
+                      <div class="article-meta">
+                        <span class="article-category">Data Science & Society</span>
+                        <span class="article-status status-dev">Topic in Development</span>
+                      </div>
+                    </div>
+                  </div>
+                  <span class="article-arrow" aria-hidden="true">→</span>
+                </button>
+                <div class="article-detail" hidden>
+                  <p class="article-abstract">
+                    An inquiry into how analytical curiosity and structured thinking help distinguish meaningful signals from background noise in contemporary data-driven environments.
+                  </p>
+                  <div class="article-action-note">
+                    <span class="tag-note">Working Draft</span>
+                    <span class="status-indicator">In Progress — Binoy Sarker</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Article 2 -->
+              <article class="article-item" role="listitem" data-article-id="art-2">
+                <button type="button" class="article-button" aria-expanded="false">
+                  <div class="article-info">
+                    <span class="article-index">02</span>
+                    <div class="article-titles">
+                      <h3 class="article-title">The Intersection of Technology and Human Stories</h3>
+                      <div class="article-meta">
+                        <span class="article-category">Feature Writing</span>
+                        <span class="article-status status-prog">Writing in Progress</span>
+                      </div>
+                    </div>
+                  </div>
+                  <span class="article-arrow" aria-hidden="true">→</span>
+                </button>
+                <div class="article-detail" hidden>
+                  <p class="article-abstract">
+                    Examining the human impact of algorithmic systems and why technical practitioners must cultivate nuanced narrative communication alongside code.
+                  </p>
+                  <div class="article-action-note">
+                    <span class="tag-note">Feature Essay</span>
+                    <span class="status-indicator">Drafting Stage</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Article 3 -->
+              <article class="article-item" role="listitem" data-article-id="art-3">
+                <button type="button" class="article-button" aria-expanded="false">
+                  <div class="article-info">
+                    <span class="article-index">03</span>
+                    <div class="article-titles">
+                      <h3 class="article-title">Beginning a Journey into Data Science</h3>
+                      <div class="article-meta">
+                        <span class="article-category">Student Perspectives</span>
+                        <span class="article-status status-draft">Draft</span>
+                      </div>
+                    </div>
+                  </div>
+                  <span class="article-arrow" aria-hidden="true">→</span>
+                </button>
+                <div class="article-detail" hidden>
+                  <p class="article-abstract">
+                    Personal reflections from a CSE undergraduate on moving past textbook theory to develop authentic analytical intuition with datasets and problem framing.
+                  </p>
+                  <div class="article-action-note">
+                    <span class="tag-note">Learning Reflection</span>
+                    <span class="status-indicator">Outline Finalized</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Article 4 -->
+              <article class="article-item" role="listitem" data-article-id="art-4">
+                <button type="button" class="article-button" aria-expanded="false">
+                  <div class="article-info">
+                    <span class="article-index">04</span>
+                    <div class="article-titles">
+                      <h3 class="article-title">How Curiosity Leads to Better Questions</h3>
+                      <div class="article-meta">
+                        <span class="article-category">Research & Inquiry</span>
+                        <span class="article-status status-dev">Topic in Development</span>
+                      </div>
+                    </div>
+                  </div>
+                  <span class="article-arrow" aria-hidden="true">→</span>
+                </button>
+                <div class="article-detail" hidden>
+                  <p class="article-abstract">
+                    Exploring how foundational question-asking precedes every sound computational model, analytical pipeline, or investigative feature story.
+                  </p>
+                  <div class="article-action-note">
+                    <span class="tag-note">Research Notes</span>
+                    <span class="status-indicator">In Conception</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Article 5 -->
+              <article class="article-item" role="listitem" data-article-id="art-5">
+                <button type="button" class="article-button" aria-expanded="false">
+                  <div class="article-info">
+                    <span class="article-index">05</span>
+                    <div class="article-titles">
+                      <h3 class="article-title">Exploring Research as a Computer Science Student</h3>
+                      <div class="article-meta">
+                        <span class="article-category">Academic Journey</span>
+                        <span class="article-status status-prog">Writing in Progress</span>
+                      </div>
+                    </div>
+                  </div>
+                  <span class="article-arrow" aria-hidden="true">→</span>
+                </button>
+                <div class="article-detail" hidden>
+                  <p class="article-abstract">
+                    Navigating undergraduate scientific literature, formulating hypotheses, and learning research methodology within an academic institution.
+                  </p>
+                  <div class="article-action-note">
+                    <span class="tag-note">Academic Feature</span>
+                    <span class="status-indicator">Writing in Progress</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Note on Editorial Status -->
+            <div class="editorial-disclaimer">
+              <span class="bullet-mono">※</span>
+              <span>All articles listed above represent ongoing research themes and manuscript drafts. As drafts mature into published essays, links and full texts will be updated here.</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Divider -->
+        <hr class="section-divider">
+
+        <!-- The Archives Section -->
+        <section class="section archives-section reveal-on-scroll" id="archives">
+          <div class="section-intro">
+            <span class="section-label">Categorized Records</span>
+            <h2 class="section-heading">The Archives</h2>
+            <p class="section-subtext">
+              A comprehensive taxonomy of coursework, creative inquiries, technical artifacts, and university activities.
+            </p>
+          </div>
+
+          <div class="archives-table">
+            <!-- Row 1: Selected Projects -->
+            <a href="#projects" class="archive-row">
+              <div class="archive-main">
+                <span class="archive-id">ARC-01</span>
+                <div class="archive-text">
+                  <h3 class="archive-title">Selected Projects</h3>
+                  <p class="archive-desc">Interactive software tools, web platforms, and academic implementations exploring technology.</p>
+                </div>
+              </div>
+              <div class="archive-meta">
+                <span class="archive-badge">2 Curated Items</span>
+                <span class="archive-indicator" aria-hidden="true">↓</span>
+              </div>
+            </a>
+
+            <!-- Row 2: Writing and Articles -->
+            <a href="#articles" class="archive-row">
+              <div class="archive-main">
+                <span class="archive-id">ARC-02</span>
+                <div class="archive-text">
+                  <h3 class="archive-title">Writing and Articles</h3>
+                  <p class="archive-desc">Essays, tech features, and critical reflections connecting computing with human experience.</p>
+                </div>
+              </div>
+              <div class="archive-meta">
+                <span class="archive-badge">5 Draft Themes</span>
+                <span class="archive-indicator" aria-hidden="true">↑</span>
+              </div>
+            </a>
+
+            <!-- Row 3: Academic Journey -->
+            <div class="archive-row archive-interactive" data-archive-target="academic-modal">
+              <div class="archive-main">
+                <span class="archive-id">ARC-03</span>
+                <div class="archive-text">
+                  <h3 class="archive-title">Academic Journey</h3>
+                  <p class="archive-desc">Foundational coursework, laboratory investigations, and core curriculum in CSE at UIU.</p>
+                </div>
+              </div>
+              <div class="archive-meta">
+                <span class="archive-badge">Undergraduate</span>
+                <span class="archive-indicator" aria-hidden="true">→</span>
+              </div>
+            </div>
+
+            <!-- Row 4: Activities and Events -->
+            <div class="archive-row archive-interactive" data-archive-target="activities-modal">
+              <div class="archive-main">
+                <span class="archive-id">ARC-04</span>
+                <div class="archive-text">
+                  <h3 class="archive-title">Activities and Events</h3>
+                  <p class="archive-desc">Active memberships with UIU Data Science Club, UIU Computer Club, and UIU Entrepreneur Development Forum.</p>
+                </div>
+              </div>
+              <div class="archive-meta">
+                <span class="archive-badge">3 Student Clubs</span>
+                <span class="archive-indicator" aria-hidden="true">→</span>
+              </div>
+            </div>
+
+            <!-- Row 5: Research Notes -->
+            <div class="archive-row archive-interactive" data-archive-target="research-modal">
+              <div class="archive-main">
+                <span class="archive-id">ARC-05</span>
+                <div class="archive-text">
+                  <h3 class="archive-title">Research Notes</h3>
+                  <p class="archive-desc">Preliminary inquiries, literature reviews, and learning notes in data analysis and artificial intelligence.</p>
+                </div>
+              </div>
+              <div class="archive-meta">
+                <span class="archive-badge">In Development</span>
+                <span class="archive-indicator" aria-hidden="true">→</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Divider -->
+        <hr class="section-divider">
+
+        <!-- Selected Projects Section -->
+        <section class="section projects-section reveal-on-scroll" id="projects">
+          <div class="section-intro">
+            <span class="section-label">Applied Work</span>
+            <h2 class="section-heading">Selected Projects</h2>
+            <p class="section-subtext">
+              Functional systems and software developed to address real-world workflows and algorithmic concepts.
+            </p>
+          </div>
+
+          <div class="projects-grid">
+            <!-- Project 1: UIU ELMS -->
+            <div class="project-card">
+              <div class="project-card-header">
+                <div class="project-meta-line">
+                  <span class="project-badge">Web Application</span>
+                  <span class="project-year">Live System</span>
+                </div>
+                <h3 class="project-title">UIU ELMS</h3>
+              </div>
+              <p class="project-description">
+                An educational learning management system project associated with student, instructor, and administrative functionality. Designed to streamline academic resources, communication, and course management.
+              </p>
+              <div class="project-footer">
+                <div class="tech-stack-row">
+                  <span class="tech-tag">Web Development</span>
+                  <span class="tech-tag">LMS Architecture</span>
+                </div>
+                <a href="https://uiuelms.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Visit UIU ELMS live project">
+                  <span>Visit Project</span>
+                  <span class="arrow-up-right" aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Project 2: Smart Password Generator -->
+            <div class="project-card">
+              <div class="project-card-header">
+                <div class="project-meta-line">
+                  <span class="project-badge">Utility & Security</span>
+                  <span class="project-year">GitHub Repository</span>
+                </div>
+                <h3 class="project-title">Smart Password Generator</h3>
+              </div>
+              <p class="project-description">
+                A clean client-side utility developed to generate cryptographically strong, customizable credentials. Emphasizes intuitive controls, entropy calculation principles, and instant clipboard operations.
+              </p>
+              <div class="project-footer">
+                <div class="tech-stack-row">
+                  <span class="tech-tag">JavaScript</span>
+                  <span class="tech-tag">Web Standards</span>
+                </div>
+                <a href="https://github.com/Binoy2003" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Smart Password Generator on GitHub profile">
+                  <span>View on GitHub</span>
+                  <span class="arrow-up-right" aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Divider -->
+        <hr class="section-divider">
+
+        <!-- About Me Section -->
+        <section class="section about-section reveal-on-scroll" id="about">
+          <div class="section-intro">
+            <span class="section-label">Background & Narrative</span>
+            <h2 class="section-heading">About Me</h2>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-narrative">
+              <p class="about-lead">
+                I am a Computer Science and Engineering undergraduate at United International University (UIU) in Dhaka, Bangladesh, exploring data, technology, research, and storytelling.
+              </p>
+              <p>
+                My academic journey is shaped by a dual fascination: the quantitative rigor required to extract meaning from complex datasets, and the editorial discipline necessary to communicate those insights clearly to people.
+              </p>
+              <p>
+                Rather than treating programming solely as an implementation tool, I approach computing as a medium for structured inquiry. I am especially drawn to Data Science, data analysis, and machine learning principles—fields where formulating the right question is just as critical as computing the answer.
+              </p>
+              <p>
+                Parallel to my technical studies, I practice feature writing and storytelling. This allows me to bridge technical concepts with human narratives, exploring how modern software and computational systems interact with daily life and society. As an undergraduate student, I am focused on continuous learning, building principled foundations in algorithms and software engineering, and working toward meaningful research in data science.
+              </p>
+
+              <!-- University Campus Affiliations -->
+              <div class="affiliations-box">
+                <h3 class="affiliations-title">University Club Memberships</h3>
+                <ul class="affiliations-list">
+                  <li>
+                    <span class="affil-role">General Member</span>
+                    <span class="affil-org">UIU Data Science Club</span>
+                  </li>
+                  <li>
+                    <span class="affil-role">General Member</span>
+                    <span class="affil-org">UIU Computer Club</span>
+                  </li>
+                  <li>
+                    <span class="affil-role">General Member</span>
+                    <span class="affil-org">UIU Entrepreneur Development Forum</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Aside: Editorial Highlights / Quick Facts -->
+            <div class="about-aside">
+              <div class="aside-block">
+                <h4 class="aside-label">Institution</h4>
+                <p class="aside-value">United International University (UIU)</p>
+                <p class="aside-sub">Dhaka, Bangladesh</p>
+              </div>
+
+              <div class="aside-block">
+                <h4 class="aside-label">Degree Focus</h4>
+                <p class="aside-value">B.Sc. in Computer Science & Engineering</p>
+                <p class="aside-sub">Undergraduate Student</p>
+              </div>
+
+              <div class="aside-block">
+                <h4 class="aside-label">Dual Practice</h4>
+                <p class="aside-value">Computing & Storytelling</p>
+                <p class="aside-sub">Data Science exploration coupled with editorial feature writing</p>
+              </div>
+
+              <div class="aside-block">
+                <h4 class="aside-label">Aspiration</h4>
+                <p class="aside-value">Data Science Growth</p>
+                <p class="aside-sub">Advancing analytical problem-solving and research capabilities</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Divider -->
+        <hr class="section-divider">
+
+        <!-- Skills and Interests Section -->
+        <section class="section skills-section reveal-on-scroll" id="skills">
+          <div class="section-intro">
+            <span class="section-label">Competencies & Focus Areas</span>
+            <h2 class="section-heading">Skills & Interests</h2>
+            <p class="section-subtext">
+              An honest presentation of languages studied, web fundamentals, and active fields of inquiry.
+            </p>
+          </div>
+
+          <div class="skills-editorial-grid">
+            <!-- Programming Languages -->
+            <div class="skill-group">
+              <div class="skill-group-header">
+                <span class="skill-index">01</span>
+                <h3 class="skill-group-title">Programming</h3>
+              </div>
+              <p class="skill-group-desc">Core languages explored through academic coursework and algorithmic problem-solving.</p>
+              <ul class="skill-text-list">
+                <li class="skill-text-item">
+                  <span class="skill-name">C</span>
+                  <span class="skill-context">Foundational procedural programming, memory & data structures</span>
+                </li>
+                <li class="skill-text-item">
+                  <span class="skill-name">C++</span>
+                  <span class="skill-context">Object-oriented paradigms, standard template library & problem solving</span>
+                </li>
+                <li class="skill-text-item">
+                  <span class="skill-name">Java</span>
+                  <span class="skill-context">Object-oriented software design, class hierarchies & core application logic</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Web Development -->
+            <div class="skill-group">
+              <div class="skill-group-header">
+                <span class="skill-index">02</span>
+                <h3 class="skill-group-title">Web Development</h3>
+              </div>
+              <p class="skill-group-desc">Standards-based frontend markup, modern styling, and interface scripting.</p>
+              <ul class="skill-text-list">
+                <li class="skill-text-item">
+                  <span class="skill-name">HTML5</span>
+                  <span class="skill-context">Semantic structure, accessibility guidelines & clean document outlines</span>
+                </li>
+                <li class="skill-text-item">
+                  <span class="skill-name">CSS3</span>
+                  <span class="skill-context">Responsive layouts, modern Grid, Flexbox, custom variables & typography</span>
+                </li>
+                <li class="skill-text-item">
+                  <span class="skill-name">JavaScript</span>
+                  <span class="skill-context">DOM interaction, asynchronous patterns & vanilla application mechanics</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Areas of Interest -->
+            <div class="skill-group">
+              <div class="skill-group-header">
+                <span class="skill-index">03</span>
+                <h3 class="skill-group-title">Areas of Interest</h3>
+              </div>
+              <p class="skill-group-desc">Active domains of academic study, independent reading, and continuous self-learning.</p>
+              <ul class="interest-tag-list">
+                <li class="interest-tag">Data Science</li>
+                <li class="interest-tag">Data Analysis</li>
+                <li class="interest-tag">Research & Problem Solving</li>
+                <li class="interest-tag">Artificial Intelligence</li>
+                <li class="interest-tag">Machine Learning</li>
+                <li class="interest-tag">Feature Writing & Storytelling</li>
+                <li class="interest-tag">Computer Science & Technology</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Divider -->
+        <hr class="section-divider">
+
+        <!-- Contact Section -->
+        <section class="section contact-section reveal-on-scroll" id="contact">
+          <div class="section-intro">
+            <span class="section-label">Dialogue & Collaboration</span>
+            <h2 class="section-heading">Get in Touch</h2>
+            <p class="section-subtext">
+              Open to academic discussions, feature writing inquiries, data exploration collaborations, and student networking.
+            </p>
+          </div>
+
+          <div class="contact-grid">
+            <!-- Left Contact Info -->
+            <div class="contact-info-panel">
+              <div class="contact-card">
+                <h3 class="contact-channel-title">Direct Profiles</h3>
+                <div class="channel-links">
+                  <div class="channel-item">
+                    <span class="channel-label">LinkedIn</span>
+                    <a href="https://linkedin.com/in/binoysarker2003/" target="_blank" rel="noopener noreferrer" class="channel-link">
+                      linkedin.com/in/binoysarker2003 <span class="arrow-up-right" aria-hidden="true">↗</span>
+                    </a>
+                  </div>
+
+                  <div class="channel-item">
+                    <span class="channel-label">GitHub</span>
+                    <a href="https://github.com/Binoy2003" target="_blank" rel="noopener noreferrer" class="channel-link">
+                      github.com/Binoy2003 <span class="arrow-up-right" aria-hidden="true">↗</span>
+                    </a>
+                  </div>
+
+                  <div class="channel-item">
+                    <span class="channel-label">Email (Editable Placeholder)</span>
+                    <div class="placeholder-email-box">
+                      <span class="placeholder-text" id="email-text">binoysarker.cse@example.com</span>
+                      <button type="button" class="btn-copy" id="copy-email-btn" aria-label="Copy placeholder email to clipboard">
+                        Copy
+                      </button>
+                    </div>
+                    <span class="field-note">Editable placeholder — replace with your personal/academic email</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contact-location-box">
+                <div class="loc-indicator">
+                  <span class="loc-dot"></span>
+                  <span class="loc-text">Location: Dhaka, Bangladesh</span>
+                </div>
+                <div class="affil-text">United International University (UIU)</div>
+              </div>
+            </div>
+
+            <!-- Right Message Form (with clear disclaimer) -->
+            <div class="contact-form-panel">
+              <form class="editorial-form" id="contact-form" novalidate>
+                <div class="form-notice">
+                  <span class="notice-icon">ℹ</span>
+                  <span class="notice-text">
+                    <strong>Notice:</strong> This is a client-side interface. A backend or email routing service (e.g., Formspree, Netlify Forms, or EmailJS) must be configured with your actual email address before messages can be dispatched automatically.
+                  </span>
+                </div>
+
+                <div class="form-group">
+                  <label for="form-name" class="form-label">Full Name</label>
+                  <input type="text" id="form-name" name="name" class="form-input" placeholder="Your name" required>
+                  <span class="form-error" id="name-error" hidden>Please provide your name.</span>
+                </div>
+
+                <div class="form-group">
+                  <label for="form-email" class="form-label">Your Email</label>
+                  <input type="email" id="form-email" name="email" class="form-input" placeholder="name@example.com" required>
+                  <span class="form-error" id="email-error" hidden>Please enter a valid email address.</span>
+                </div>
+
+                <div class="form-group">
+                  <label for="form-subject" class="form-label">Subject</label>
+                  <input type="text" id="form-subject" name="subject" class="form-input" placeholder="Inquiry topic or project discussion" required>
+                  <span class="form-error" id="subject-error" hidden>Please specify a subject.</span>
+                </div>
+
+                <div class="form-group">
+                  <label for="form-message" class="form-label">Message</label>
+                  <textarea id="form-message" name="message" rows="4" class="form-textarea" placeholder="Share your message or idea..." required></textarea>
+                  <span class="form-error" id="message-error" hidden>Please enter your message.</span>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                  Submit Message <span class="arrow-icon" aria-hidden="true">→</span>
+                </button>
+
+                <div class="form-feedback" id="form-feedback" role="alert" hidden></div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- Editorial Footer -->
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <div class="footer-left">
+            <span class="footer-name">Binoy Sarker</span>
+            <span class="footer-copy">
+              &copy; <span id="current-year">2026</span> Binoy Sarker. All rights reserved.
+            </span>
+          </div>
+
+          <div class="footer-center">
+            <ul class="footer-links">
+              <li><a href="https://linkedin.com/in/binoysarker2003/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a></li>
+              <li><a href="https://github.com/Binoy2003" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a></li>
+              <li><a href="https://uiuelms.netlify.app/" target="_blank" rel="noopener noreferrer" class="footer-link">UIU ELMS</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-right">
+            <a href="#top" class="back-to-top" aria-label="Back to top of page">
+              <span>Back to Top</span>
+              <span class="arrow-up" aria-hidden="true">↑</span>
+            </a>
+          </div>
+        </div>
+      </footer>
+
+    </div><!-- End content-panel -->
+  </div><!-- End site-wrapper -->
+
+  <!-- Editorial Info Modal for Archives Details -->
+  <dialog class="editorial-modal" id="archive-modal" aria-labelledby="modal-title">
+    <div class="modal-dialog-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Archive Details</h3>
+        <button type="button" class="modal-close-btn" id="modal-close" aria-label="Close dialog">✕</button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <!-- Dynamic Content Injected via Script -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" id="modal-ok-btn">Close</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-notification" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <!-- Vanilla Script -->
+  <script src="script.js"></script>
+</body>
+</html>
