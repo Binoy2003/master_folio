@@ -915,6 +915,27 @@ main {
   border-color: var(--color-white);
 }
 
+.project-links-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.link-separator {
+  color: var(--color-border);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.projects-cta-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed var(--color-border-subtle);
+  width: 100%;
+}
+
 /* --- About Me Section --- */
 .about-grid {
   display: grid;
@@ -1311,7 +1332,9 @@ main {
 }
 
 .form-input,
-.form-textarea {
+.form-input,
+.form-textarea,
+.form-select {
   background-color: var(--color-main-panel);
   border: 1px solid var(--color-border);
   color: var(--color-white);
@@ -1320,10 +1343,27 @@ main {
   padding: 0.8rem 1rem;
   border-radius: var(--card-radius);
   transition: border-color var(--transition-fast), background-color var(--transition-fast);
+  width: 100%;
+}
+
+.form-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23A0A0A0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
+}
+
+.form-select option {
+  background-color: var(--color-main-panel);
+  color: var(--color-white);
 }
 
 .form-input:focus,
-.form-textarea:focus {
+.form-textarea:focus,
+.form-select:focus {
   outline: none;
   border-color: var(--color-white);
   background-color: #262626;
@@ -1332,6 +1372,173 @@ main {
 .form-input::placeholder,
 .form-textarea::placeholder {
   color: var(--color-text-muted);
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.req {
+  color: var(--color-white);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  margin-left: 0.2rem;
+}
+
+.opt {
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-weight: 400;
+  margin-left: 0.3rem;
+}
+
+.email-clickable {
+  text-decoration: none;
+  color: var(--color-white);
+  transition: color var(--transition-fast);
+}
+
+.email-clickable:hover {
+  text-decoration: underline;
+  color: var(--color-white);
+}
+
+.footer-location {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-top: 0.15rem;
+}
+
+/* --- Research Ideas Section --- */
+.research-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+.research-info-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.research-card {
+  background-color: var(--color-panel-subtle);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--card-radius);
+  padding: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.research-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-white);
+  letter-spacing: -0.015em;
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding-bottom: 0.85rem;
+}
+
+.research-card-desc {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+}
+
+.research-card-desc strong {
+  color: var(--color-white);
+}
+
+.research-topics-box {
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--card-radius);
+  padding: 1.5rem;
+}
+
+.research-topics-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-white);
+  margin-bottom: 0.85rem;
+  font-family: var(--font-main);
+}
+
+.research-topics-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.research-topics-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.research-topics-list li strong {
+  color: var(--color-white);
+}
+
+.topic-bullet {
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  line-height: 1.8;
+}
+
+.research-privacy-box {
+  background-color: var(--color-panel-elevated);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--card-radius);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.privacy-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.privacy-icon {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-white);
+}
+
+.privacy-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-family: var(--font-mono);
+}
+
+.privacy-text {
+  font-size: 0.825rem;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+
+.research-form-panel {
+  background-color: var(--color-panel-subtle);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--card-radius);
+  padding: 2.5rem;
 }
 
 .form-error {
@@ -1346,12 +1553,12 @@ main {
 
 .form-feedback {
   margin-top: 1.25rem;
-  padding: 1rem;
+  padding: 1.25rem;
   border: 1px solid var(--color-white);
   background-color: var(--color-panel-elevated);
   color: var(--color-white);
   font-size: 0.9rem;
-  line-height: 1.5;
+  line-height: 1.55;
   border-radius: var(--card-radius);
 }
 
@@ -1626,6 +1833,11 @@ main {
     gap: 2.5rem;
   }
 
+  .research-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
   .site-footer {
     padding: 2rem;
   }
@@ -1697,8 +1909,17 @@ main {
     padding: 1.5rem;
   }
 
+  .research-form-panel {
+    padding: 1.5rem;
+  }
+
   .contact-form-panel {
     padding: 1.5rem;
+  }
+
+  .form-row-2 {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .footer-inner {

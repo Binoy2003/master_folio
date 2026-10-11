@@ -4,17 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Binoy Sarker | Personal Portfolio</title>
-  <meta name="description" content="Personal portfolio of Binoy Sarker — CSE undergraduate at United International University interested in Data Science, technology, and feature writing.">
+  <meta name="description" content="Personal portfolio of Binoy Sarker — CSE undergraduate at United International University exploring Data Science, Bioinformatics, Machine Learning, and feature writing.">
   <meta name="author" content="Binoy Sarker">
   
   <!-- Open Graph / Meta -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Binoy Sarker | Personal Portfolio">
-  <meta property="og:description" content="CSE Undergraduate at UIU & Features Writer. Exploring data analysis, artificial intelligence, and human stories through technology.">
+  <meta property="og:description" content="CSE Undergraduate at UIU & Features Writer. Exploring bioinformatics, machine learning, data inquiry, and human stories through technology.">
   <meta property="og:image" content="assets/profile.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Binoy Sarker | Personal Portfolio">
-  <meta name="twitter:description" content="CSE Undergraduate at UIU & Features Writer. Exploring data analysis, artificial intelligence, and human stories through technology.">
+  <meta name="twitter:description" content="CSE Undergraduate at UIU & Features Writer. Exploring bioinformatics, machine learning, data inquiry, and human stories through technology.">
 
   <!-- Minimal Monochrome Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23171717'/><circle cx='50' cy='50' r='36' fill='%23222222' stroke='%23F5F5F5' stroke-width='4'/><text x='50' y='61' font-family='sans-serif' font-size='34' font-weight='bold' fill='%23FFFFFF' text-anchor='middle'>B</text></svg>">
@@ -50,8 +50,8 @@
             <ul class="nav-list">
               <li><a href="#hero" class="nav-link active">Home</a></li>
               <li><a href="#articles" class="nav-link">Articles</a></li>
-              <li><a href="#archives" class="nav-link">Archives</a></li>
               <li><a href="#projects" class="nav-link">Projects</a></li>
+              <li><a href="#research-ideas" class="nav-link">Research Ideas</a></li>
               <li><a href="#about" class="nav-link">About</a></li>
               <li><a href="#skills" class="nav-link">Skills</a></li>
               <li><a href="#contact" class="nav-link">Contact</a></li>
@@ -70,8 +70,8 @@
           <ul class="mobile-nav-list">
             <li><a href="#hero" class="mobile-nav-link">Home</a></li>
             <li><a href="#articles" class="mobile-nav-link">Articles</a></li>
-            <li><a href="#archives" class="mobile-nav-link">Archives</a></li>
             <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
+            <li><a href="#research-ideas" class="mobile-nav-link">Research Ideas</a></li>
             <li><a href="#about" class="mobile-nav-link">About</a></li>
             <li><a href="#skills" class="mobile-nav-link">Skills & Interests</a></li>
             <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
@@ -122,6 +122,9 @@
               <a href="#projects" class="btn btn-primary">
                 Explore My Work <span class="arrow-icon" aria-hidden="true">→</span>
               </a>
+              <a href="#research-ideas" class="btn btn-outline">
+                Share an Idea <span class="arrow-up-right" aria-hidden="true">↗</span>
+              </a>
               <a href="#about" class="btn btn-outline">About Me</a>
               <a href="#contact" class="btn btn-outline">Contact</a>
             </div>
@@ -135,6 +138,10 @@
               <span class="social-dot" aria-hidden="true">/</span>
               <a href="https://github.com/Binoy2003" target="_blank" rel="noopener noreferrer" class="social-link">
                 GitHub <span class="arrow-up-right" aria-hidden="true">↗</span>
+              </a>
+              <span class="social-dot" aria-hidden="true">/</span>
+              <a href="mailto:binoysarker2003@gmail.com" class="social-link">
+                Email <span class="arrow-up-right" aria-hidden="true">↗</span>
               </a>
             </div>
           </div>
@@ -309,11 +316,11 @@
                 <span class="archive-id">ARC-01</span>
                 <div class="archive-text">
                   <h3 class="archive-title">Selected Projects</h3>
-                  <p class="archive-desc">Interactive software tools, web platforms, and academic implementations exploring technology.</p>
+                  <p class="archive-desc">Interactive software tools, web platforms, and verified GitHub repositories.</p>
                 </div>
               </div>
               <div class="archive-meta">
-                <span class="archive-badge">2 Curated Items</span>
+                <span class="archive-badge">GitHub Projects</span>
                 <span class="archive-indicator" aria-hidden="true">↓</span>
               </div>
             </a>
@@ -363,20 +370,20 @@
               </div>
             </div>
 
-            <!-- Row 5: Research Notes -->
-            <div class="archive-row archive-interactive" data-archive-target="research-modal">
+            <!-- Row 5: Research Ideas & Notes -->
+            <a href="#research-ideas" class="archive-row">
               <div class="archive-main">
                 <span class="archive-id">ARC-05</span>
                 <div class="archive-text">
-                  <h3 class="archive-title">Research Notes</h3>
-                  <p class="archive-desc">Preliminary inquiries, literature reviews, and learning notes in data analysis and artificial intelligence.</p>
+                  <h3 class="archive-title">Research Ideas & Collaboration</h3>
+                  <p class="archive-desc">Collaborative inquiry in Bioinformatics, Machine Learning, and data analysis.</p>
                 </div>
               </div>
               <div class="archive-meta">
-                <span class="archive-badge">In Development</span>
-                <span class="archive-indicator" aria-hidden="true">→</span>
+                <span class="archive-badge">Share an Idea</span>
+                <span class="archive-indicator" aria-hidden="true">↓</span>
               </div>
-            </div>
+            </a>
           </div>
         </section>
 
@@ -386,35 +393,42 @@
         <!-- Selected Projects Section -->
         <section class="section projects-section reveal-on-scroll" id="projects">
           <div class="section-intro">
-            <span class="section-label">Applied Work</span>
+            <span class="section-label">Applied Work & Code</span>
             <h2 class="section-heading">Selected Projects</h2>
             <p class="section-subtext">
-              Functional systems and software developed to address real-world workflows and algorithmic concepts.
+              Functional systems, web platforms, and verified public repositories from my GitHub profile.
             </p>
           </div>
 
-          <div class="projects-grid">
+          <div class="projects-grid" id="projects-container">
             <!-- Project 1: UIU ELMS -->
             <div class="project-card">
               <div class="project-card-header">
                 <div class="project-meta-line">
-                  <span class="project-badge">Web Application</span>
+                  <span class="project-badge">Academic Platform</span>
                   <span class="project-year">Live System</span>
                 </div>
                 <h3 class="project-title">UIU ELMS</h3>
               </div>
               <p class="project-description">
-                An educational learning management system project associated with student, instructor, and administrative functionality. Designed to streamline academic resources, communication, and course management.
+                A comprehensive educational learning management system (eLMS) featuring role-based dashboards, secure course management, and academic communication. Associated with student, instructor, and administrative functionality.
               </p>
               <div class="project-footer">
                 <div class="tech-stack-row">
                   <span class="tech-tag">Web Development</span>
                   <span class="tech-tag">LMS Architecture</span>
                 </div>
-                <a href="https://uiuelms.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Visit UIU ELMS live project">
-                  <span>Visit Project</span>
-                  <span class="arrow-up-right" aria-hidden="true">↗</span>
-                </a>
+                <div class="project-links-group">
+                  <a href="https://uiuelms.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Visit UIU ELMS live project">
+                    <span>Visit Project</span>
+                    <span class="arrow-up-right" aria-hidden="true">↗</span>
+                  </a>
+                  <span class="link-separator" aria-hidden="true">/</span>
+                  <a href="https://github.com/Binoy2003/UIU-Learning-Management-System-LMS-" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View UIU ELMS repository on GitHub">
+                    <span>Repository</span>
+                    <span class="arrow-up-right" aria-hidden="true">↗</span>
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -422,24 +436,270 @@
             <div class="project-card">
               <div class="project-card-header">
                 <div class="project-meta-line">
-                  <span class="project-badge">Utility & Security</span>
-                  <span class="project-year">GitHub Repository</span>
+                  <span class="project-badge">Security Utility</span>
+                  <span class="project-year">HTML &amp; JS</span>
                 </div>
                 <h3 class="project-title">Smart Password Generator</h3>
               </div>
               <p class="project-description">
-                A clean client-side utility developed to generate cryptographically strong, customizable credentials. Emphasizes intuitive controls, entropy calculation principles, and instant clipboard operations.
+                A secure and customizable password generator built with modern web technologies. Emphasizes randomized entropy calculation, configurable character complexity, and instant clipboard operations.
+              </p>
+              <div class="project-footer">
+                <div class="tech-stack-row">
+                  <span class="tech-tag">HTML</span>
+                  <span class="tech-tag">JavaScript</span>
+                  <span class="tech-tag">Security</span>
+                </div>
+                <a href="https://github.com/Binoy2003/smart-password-generator" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Smart Password Generator on GitHub">
+                  <span>View Repository</span>
+                  <span class="arrow-up-right" aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Project 3: TangailDistrictInfoBot -->
+            <div class="project-card">
+              <div class="project-card-header">
+                <div class="project-meta-line">
+                  <span class="project-badge">Civic Tech / Bot</span>
+                  <span class="project-year">Python</span>
+                </div>
+                <h3 class="project-title">TangailDistrictInfoBot</h3>
+              </div>
+              <p class="project-description">
+                Telegram bot providing structured regional information for Tangail District, including government services, healthcare facilities, education, tourism, emergency assistance, and public notices.
+              </p>
+              <div class="project-footer">
+                <div class="tech-stack-row">
+                  <span class="tech-tag">Python</span>
+                  <span class="tech-tag">Telegram API</span>
+                  <span class="tech-tag">Civic Data</span>
+                </div>
+                <a href="https://github.com/Binoy2003/TangailDistrictInfoBot" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View TangailDistrictInfoBot on GitHub">
+                  <span>View Repository</span>
+                  <span class="arrow-up-right" aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Project 4: UIU-CSE-Academic-Codes -->
+            <div class="project-card">
+              <div class="project-card-header">
+                <div class="project-meta-line">
+                  <span class="project-badge">Academic Repository</span>
+                  <span class="project-year">C++</span>
+                </div>
+                <h3 class="project-title">UIU-CSE-Academic-Codes</h3>
+              </div>
+              <p class="project-description">
+                Curated collection of academic codes, lab tasks, assignments, and problem-solving solutions from CSE coursework at United International University. Organized course-wise across C++, Data Structures, Database, and Algorithms.
+              </p>
+              <div class="project-footer">
+                <div class="tech-stack-row">
+                  <span class="tech-tag">C++</span>
+                  <span class="tech-tag">Data Structures</span>
+                  <span class="tech-tag">Algorithms</span>
+                </div>
+                <a href="https://github.com/Binoy2003/UIU-CSE-Academic-Codes" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View UIU-CSE-Academic-Codes repository on GitHub">
+                  <span>View Repository</span>
+                  <span class="arrow-up-right" aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Project 5: mastering-javascript -->
+            <div class="project-card">
+              <div class="project-card-header">
+                <div class="project-meta-line">
+                  <span class="project-badge">Language Exploration</span>
+                  <span class="project-year">JavaScript</span>
+                </div>
+                <h3 class="project-title">mastering-javascript</h3>
+              </div>
+              <p class="project-description">
+                A progressive collection of JavaScript practice exercises, coding challenges, and concept explorations documenting foundations through advanced asynchronous mechanics.
               </p>
               <div class="project-footer">
                 <div class="tech-stack-row">
                   <span class="tech-tag">JavaScript</span>
+                  <span class="tech-tag">ES6+</span>
                   <span class="tech-tag">Web Standards</span>
                 </div>
-                <a href="https://github.com/Binoy2003" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Smart Password Generator on GitHub profile">
-                  <span>View on GitHub</span>
+                <a href="https://github.com/Binoy2003/mastering-javascript" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View mastering-javascript repository on GitHub">
+                  <span>View Repository</span>
                   <span class="arrow-up-right" aria-hidden="true">↗</span>
                 </a>
               </div>
+            </div>
+
+            <!-- Project 6: DSA-2 -->
+            <div class="project-card">
+              <div class="project-card-header">
+                <div class="project-meta-line">
+                  <span class="project-badge">Algorithms &amp; Theory</span>
+                  <span class="project-year">C++</span>
+                </div>
+                <h3 class="project-title">DSA-2</h3>
+              </div>
+              <p class="project-description">
+                Academic implementations and practice problems for the Data Structures &amp; Algorithms-II (DSA-II) course, emphasizing graph algorithms, dynamic programming, and greedy optimization methods.
+              </p>
+              <div class="project-footer">
+                <div class="tech-stack-row">
+                  <span class="tech-tag">C++</span>
+                  <span class="tech-tag">Graph Theory</span>
+                  <span class="tech-tag">DSA</span>
+                </div>
+                <a href="https://github.com/Binoy2003/DSA-2" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View DSA-2 repository on GitHub">
+                  <span>View Repository</span>
+                  <span class="arrow-up-right" aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- GitHub Profile CTA Row -->
+          <div class="projects-cta-row">
+            <a href="https://github.com/Binoy2003" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="View all projects on Binoy Sarker's GitHub profile">
+              <span>View All Projects on GitHub</span>
+              <span class="arrow-up-right" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- Divider -->
+        <hr class="section-divider">
+
+        <!-- NEW SECTION: Share Your Research Idea -->
+        <section class="section research-section reveal-on-scroll" id="research-ideas">
+          <div class="section-intro">
+            <span class="section-label">Collaborative Inquiry</span>
+            <h2 class="section-heading">Share Your Research Idea</h2>
+            <p class="section-subtext">
+              Every meaningful discovery begins with a question. Share an idea, explore a research problem, or find someone interested in thinking about it with you.
+            </p>
+          </div>
+
+          <div class="research-grid">
+            <!-- Left: Collaborative Context & Research Inquiries -->
+            <div class="research-info-panel">
+              <div class="research-card">
+                <h3 class="research-card-title">Open Inquiry & Collaboration</h3>
+                <p class="research-card-desc">
+                  As a CSE undergraduate exploring <strong>Bioinformatics</strong> and <strong>Machine Learning</strong>, I believe the most promising investigations arise when students, peers, and curious thinkers share exploratory questions across disciplines.
+                </p>
+
+                <div class="research-topics-box">
+                  <h4 class="research-topics-title">Active Areas of Curiosity:</h4>
+                  <ul class="research-topics-list">
+                    <li>
+                      <span class="topic-bullet">◈</span>
+                      <div><strong>Bioinformatics:</strong> Genomic data patterns, sequence analysis, and biological data processing.</div>
+                    </li>
+                    <li>
+                      <span class="topic-bullet">◈</span>
+                      <div><strong>Machine Learning:</strong> Predictive modeling, data preprocessing pipelines, and algorithmic explainability.</div>
+                    </li>
+                    <li>
+                      <span class="topic-bullet">◈</span>
+                      <div><strong>Data Science:</strong> Exploring real-world datasets and formulating sharper investigative questions.</div>
+                    </li>
+                    <li>
+                      <span class="topic-bullet">◈</span>
+                      <div><strong>Interdisciplinary Problem Solving:</strong> Connecting computing with scientific and human narratives.</div>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="research-privacy-box">
+                  <div class="privacy-header">
+                    <span class="privacy-icon">ℹ</span>
+                    <span class="privacy-title">Privacy &amp; Open Discourse</span>
+                  </div>
+                  <p class="privacy-text">
+                    Please do not submit passwords, sensitive personal information, or confidential unpublished research. Submitted ideas are intended for open collaborative exploration.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Idea Submission Form -->
+            <div class="research-form-panel">
+              <form class="editorial-form" id="research-idea-form" novalidate>
+                <div class="form-notice">
+                  <span class="notice-icon">ℹ</span>
+                  <span class="notice-text">
+                    <strong>Submission Service Architecture:</strong> This form validates submissions on the client side. Live storage or public board posting can be enabled by specifying a backend endpoint in <code>script.js</code>.
+                  </span>
+                </div>
+
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label for="idea-name" class="form-label">Your Name <span class="req" aria-hidden="true">*</span></label>
+                    <input type="text" id="idea-name" name="name" class="form-input" placeholder="e.g. Binoy Sarker" required>
+                    <span class="form-error" id="idea-name-error" hidden>Please provide your name.</span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="idea-email" class="form-label">Email Address <span class="req" aria-hidden="true">*</span></label>
+                    <input type="email" id="idea-email" name="email" class="form-input" placeholder="name@example.com" required>
+                    <span class="form-error" id="idea-email-error" hidden>Please provide a valid email address.</span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="idea-title" class="form-label">Research Idea Title <span class="req" aria-hidden="true">*</span></label>
+                  <input type="text" id="idea-title" name="title" class="form-input" placeholder="e.g. Exploratory sequence pattern classification using ML" required>
+                  <span class="form-error" id="idea-title-error" hidden>Please enter a descriptive title for your research idea.</span>
+                </div>
+
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label for="idea-area" class="form-label">Research Area <span class="req" aria-hidden="true">*</span></label>
+                    <select id="idea-area" name="area" class="form-select" required>
+                      <option value="" disabled selected>Select a research domain...</option>
+                      <option value="Bioinformatics">Bioinformatics</option>
+                      <option value="Machine Learning">Machine Learning</option>
+                      <option value="Artificial Intelligence">Artificial Intelligence</option>
+                      <option value="Data Science">Data Science</option>
+                      <option value="Computational Biology">Computational Biology</option>
+                      <option value="Computer Science">Computer Science</option>
+                      <option value="Interdisciplinary Research">Interdisciplinary Research</option>
+                      <option value="Other">Other</option>
+                    </select>
+                    <span class="form-error" id="idea-area-error" hidden>Please select a research area.</span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="idea-stage" class="form-label">Research Stage <span class="opt">(Optional)</span></label>
+                    <select id="idea-stage" name="stage" class="form-select">
+                      <option value="Early idea">Early idea</option>
+                      <option value="Literature review">Literature review</option>
+                      <option value="Looking for collaborators">Looking for collaborators</option>
+                      <option value="Ongoing exploration">Ongoing exploration</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="idea-description" class="form-label">Research Idea Description <span class="req" aria-hidden="true">*</span></label>
+                  <textarea id="idea-description" name="description" rows="5" class="form-textarea" placeholder="Describe the problem, the question you're investigating, or what kind of collaboration you are seeking..." required></textarea>
+                  <span class="form-error" id="idea-description-error" hidden>Please describe your research idea.</span>
+                </div>
+
+                <div class="form-group">
+                  <label for="idea-link" class="form-label">Optional GitHub / Research Link <span class="opt">(Optional)</span></label>
+                  <input type="url" id="idea-link" name="link" class="form-input" placeholder="https://github.com/... or paper link">
+                  <span class="form-error" id="idea-link-error" hidden>Please enter a valid URL (starting with http:// or https://).</span>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" id="idea-submit-btn">
+                  <span class="btn-text">Submit Research Idea</span>
+                  <span class="arrow-icon" aria-hidden="true">→</span>
+                </button>
+
+                <div class="form-feedback" id="idea-feedback" role="alert" hidden></div>
+              </form>
             </div>
           </div>
         </section>
@@ -457,16 +717,13 @@
           <div class="about-grid">
             <div class="about-narrative">
               <p class="about-lead">
-                I am a Computer Science and Engineering undergraduate at United International University (UIU) in Dhaka, Bangladesh, exploring data, technology, research, and storytelling.
+                I'm a Computer Science and Engineering undergraduate at United International University, exploring the intersection of data, technology, and research. Recently, I've been exploring research in Bioinformatics and Machine Learning, learning how computational methods and data-driven approaches can help investigate meaningful problems. I'm interested in analytical problem-solving, Data Science, and communicating complex ideas through clear writing. I'm continuously learning, experimenting, and looking for opportunities to collaborate on interesting research questions.
               </p>
               <p>
-                My academic journey is shaped by a dual fascination: the quantitative rigor required to extract meaning from complex datasets, and the editorial discipline necessary to communicate those insights clearly to people.
+                My approach is grounded in continuous learning—building strong conceptual intuition in algorithms and software design while examining real-world datasets. Rather than treating technical skills as isolated tools, I enjoy combining computational methods with storytelling to make technical insights accessible and impactful.
               </p>
               <p>
-                Rather than treating programming solely as an implementation tool, I approach computing as a medium for structured inquiry. I am especially drawn to Data Science, data analysis, and machine learning principles—fields where formulating the right question is just as critical as computing the answer.
-              </p>
-              <p>
-                Parallel to my technical studies, I practice feature writing and storytelling. This allows me to bridge technical concepts with human narratives, exploring how modern software and computational systems interact with daily life and society. As an undergraduate student, I am focused on continuous learning, building principled foundations in algorithms and software engineering, and working toward meaningful research in data science.
+                I welcome discussions and potential collaborations with fellow students, researchers, and mentors interested in computational biology, data analysis, or machine learning applications.
               </p>
 
               <!-- University Campus Affiliations -->
@@ -504,15 +761,15 @@
               </div>
 
               <div class="aside-block">
-                <h4 class="aside-label">Dual Practice</h4>
-                <p class="aside-value">Computing & Storytelling</p>
-                <p class="aside-sub">Data Science exploration coupled with editorial feature writing</p>
+                <h4 class="aside-label">Research Focus</h4>
+                <p class="aside-value">Bioinformatics &amp; Machine Learning</p>
+                <p class="aside-sub">Exploring computational inquiry and data-driven methods</p>
               </div>
 
               <div class="aside-block">
-                <h4 class="aside-label">Aspiration</h4>
-                <p class="aside-value">Data Science Growth</p>
-                <p class="aside-sub">Advancing analytical problem-solving and research capabilities</p>
+                <h4 class="aside-label">Dual Practice</h4>
+                <p class="aside-value">Computing &amp; Feature Writing</p>
+                <p class="aside-sub">Combining technical foundations with clear storytelling</p>
               </div>
             </div>
           </div>
@@ -586,11 +843,12 @@
               </div>
               <p class="skill-group-desc">Active domains of academic study, independent reading, and continuous self-learning.</p>
               <ul class="interest-tag-list">
+                <li class="interest-tag">Bioinformatics</li>
+                <li class="interest-tag">Machine Learning</li>
                 <li class="interest-tag">Data Science</li>
                 <li class="interest-tag">Data Analysis</li>
                 <li class="interest-tag">Research & Problem Solving</li>
                 <li class="interest-tag">Artificial Intelligence</li>
-                <li class="interest-tag">Machine Learning</li>
                 <li class="interest-tag">Feature Writing & Storytelling</li>
                 <li class="interest-tag">Computer Science & Technology</li>
               </ul>
@@ -632,14 +890,14 @@
                   </div>
 
                   <div class="channel-item">
-                    <span class="channel-label">Email (Editable Placeholder)</span>
+                    <span class="channel-label">Contact Email</span>
                     <div class="placeholder-email-box">
-                      <span class="placeholder-text" id="email-text">binoysarker.cse@example.com</span>
-                      <button type="button" class="btn-copy" id="copy-email-btn" aria-label="Copy placeholder email to clipboard">
+                      <a href="mailto:binoysarker2003@gmail.com" class="placeholder-text email-clickable" id="email-text">binoysarker2003@gmail.com</a>
+                      <button type="button" class="btn-copy" id="copy-email-btn" aria-label="Copy email to clipboard">
                         Copy
                       </button>
                     </div>
-                    <span class="field-note">Editable placeholder — replace with your personal/academic email</span>
+                    <span class="field-note">Direct clickable email link &amp; clipboard copy</span>
                   </div>
                 </div>
               </div>
@@ -659,7 +917,7 @@
                 <div class="form-notice">
                   <span class="notice-icon">ℹ</span>
                   <span class="notice-text">
-                    <strong>Notice:</strong> This is a client-side interface. A backend or email routing service (e.g., Formspree, Netlify Forms, or EmailJS) must be configured with your actual email address before messages can be dispatched automatically.
+                    <strong>Notice:</strong> This is a client-side interface. A backend or email routing service (e.g., Formspree, Netlify Forms, or EmailJS) can be configured to dispatch messages directly.
                   </span>
                 </div>
 
@@ -704,6 +962,7 @@
         <div class="footer-inner">
           <div class="footer-left">
             <span class="footer-name">Binoy Sarker</span>
+            <span class="footer-location">Dhaka, Bangladesh</span>
             <span class="footer-copy">
               &copy; <span id="current-year">2026</span> Binoy Sarker. All rights reserved.
             </span>
@@ -711,9 +970,9 @@
 
           <div class="footer-center">
             <ul class="footer-links">
-              <li><a href="https://linkedin.com/in/binoysarker2003/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a></li>
               <li><a href="https://github.com/Binoy2003" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a></li>
-              <li><a href="https://uiuelms.netlify.app/" target="_blank" rel="noopener noreferrer" class="footer-link">UIU ELMS</a></li>
+              <li><a href="https://linkedin.com/in/binoysarker2003/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a></li>
+              <li><a href="mailto:binoysarker2003@gmail.com" class="footer-link">binoysarker2003@gmail.com</a></li>
             </ul>
           </div>
 
