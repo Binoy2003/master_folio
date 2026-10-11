@@ -4,17 +4,43 @@
  */
 
 // ==========================================================================
-// CONFIGURATION & INTEGRATION ENDPOINTS
+// EMAILJS CONFIGURATION
+// Destination: binoysarker2003@gmail.com
+// Official Documentation: https://www.emailjs.com/docs/
 // ==========================================================================
 /**
- * Backend / Webhook endpoint for the "Share Your Research Idea" form.
- * To enable live persistent submissions or database storage, set your endpoint URL here:
- * e.g., 'https://formspree.io/f/YOUR_FORM_ID' or 'https://api.yourdomain.com/research-ideas'
- * When left empty (''), the form performs full client-side validation and explains the setup transparently.
+ * Configuration for direct email dispatch via EmailJS (Browser SDK v4).
+ * 
+ * Replace the placeholders below with the keys from your EmailJS Dashboard:
+ * 1. publicKey: Account -> General -> "Public Key" (e.g. "x1Y2z3A4B5C6D7E8F")
+ * 2. serviceId: Email Services -> Service ID (e.g. "service_gmail" or "service_xxxx")
+ * 3. contactTemplateId: Email Templates -> Template ID for Contact Form (e.g. "template_contact")
+ * 4. researchTemplateId: Email Templates -> Template ID for Research Idea Form (e.g. "template_research")
  */
-const RESEARCH_IDEA_ENDPOINT = '';
+const EMAILJS_CONFIG = {
+  publicKey: 'YOUR_EMAILJS_PUBLIC_KEY',
+  serviceId: 'YOUR_EMAILJS_SERVICE_ID',
+  contactTemplateId: 'YOUR_CONTACT_TEMPLATE_ID',
+  researchTemplateId: 'YOUR_RESEARCH_TEMPLATE_ID',
+};
+
+// Helper to verify whether real credentials have replaced placeholder values
+function isConfigPlaceholder(val) {
+  return !val || typeof val !== 'string' || val.trim() === '' || val.startsWith('YOUR_');
+}
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize EmailJS if valid public key is configured
+  if (typeof emailjs !== 'undefined' && !isConfigPlaceholder(EMAILJS_CONFIG.publicKey)) {
+    try {
+      emailjs.init({
+        publicKey: EMAILJS_CONFIG.publicKey,
+      });
+    } catch (initErr) {
+      console.warn('EmailJS initialization notice:', initErr);
+    }
+  }
+
   // 1. Dynamic Copyright Year
   const yearElement = document.getElementById('current-year');
   if (yearElement) {
@@ -273,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.removeChild(textArea);
   }
 
-  // 9. Share Your Research Idea Form Handler
+  // 9. Share Your Research Idea Form Handler (EmailJS Integration)
   const ideaForm = document.getElementById('research-idea-form');
   const ideaFeedback = document.getElementById('idea-feedback');
   const ideaSubmitBtn = document.getElementById('idea-submit-btn');
@@ -283,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ideaForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      if (isSubmittingIdea) return; // Prevent duplicate submission
+      if (isSubmittingIdea) return; // Prevent duplicate submissions while in progress
 
       const nameInput = document.getElementById('idea-name');
       const emailInput = document.getElementById('idea-email');
@@ -362,76 +388,102 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!isValid) return;
 
-      const submissionPayload = {
-        name: nameInput.value.trim(),
-        email: emailInput.value.trim(),
-        title: titleInput.value.trim(),
-        area: areaSelect.value,
-        stage: stageSelect.value || 'Not specified',
-        description: descInput.value.trim(),
-        link: linkVal || 'None provided',
-        submittedAt: new Date().toISOString()
+      const templateParams = {
+        to_email: 'binoysarker2003@gmail.com',
+        from_name: nameInput.value.trim(),
+        reply_to: emailInput.value.trim(),
+        from_email: emailInput.value.trim(),
+        idea_title: titleInput.value.trim(),
+        idea_area: areaSelect.value,
+        idea_stage: stageSelect.value || 'Not specified',
+        idea_description: descInput.value.trim(),
+        idea_link: linkVal || 'None provided',
+        submitted_at: new Date().toLocaleString('en-US', {
+          dateStyle: 'full',
+          timeStyle: 'medium'
+        })
       };
 
-      // Handle Live Endpoint vs. Transparent Demo Mode
-      if (RESEARCH_IDEA_ENDPOINT && RESEARCH_IDEA_ENDPOINT.trim() !== '') {
-        isSubmittingIdea = true;
-        setButtonLoading(ideaSubmitBtn, true, 'Submitting Idea...');
-
-        try {
-          const response = await fetch(RESEARCH_IDEA_ENDPOINT, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
-            body: JSON.stringify(submissionPayload)
-          });
-
-          if (response.ok) {
-            ideaFeedback.innerHTML = `
-              <strong>Research Idea Submitted Successfully:</strong><br>
-              Thank you, <em>${escapeHTML(submissionPayload.name)}</em>. Your research idea "<strong>${escapeHTML(submissionPayload.title)}</strong>" in <em>${escapeHTML(submissionPayload.area)}</em> has been received. We look forward to exploring this collaborative direction.
-            `;
-            ideaFeedback.removeAttribute('hidden');
-            ideaForm.reset();
-            showToast('Research idea transmitted successfully.');
-          } else {
-            throw new Error(`Submission failed with status: ${response.status}`);
-          }
-        } catch (err) {
-          ideaFeedback.innerHTML = `
-            <strong>Submission Service Error:</strong><br>
-            Unable to connect to the configured endpoint. Error: ${escapeHTML(err.message)}. Please verify your endpoint configuration in <code>script.js</code> or reach out directly at <a href="mailto:binoysarker2003@gmail.com" style="color: #FFFFFF; text-decoration: underline;">binoysarker2003@gmail.com</a>.
-          `;
-          ideaFeedback.removeAttribute('hidden');
-        } finally {
-          isSubmittingIdea = false;
-          setButtonLoading(ideaSubmitBtn, false, 'Submit Research Idea');
-        }
-      } else {
-        // Honest, transparent feedback when no backend service is configured yet
+      // Check if EmailJS credentials are configured or placeholder
+      if (
+        isConfigPlaceholder(EMAILJS_CONFIG.publicKey) ||
+        isConfigPlaceholder(EMAILJS_CONFIG.serviceId) ||
+        isConfigPlaceholder(EMAILJS_CONFIG.researchTemplateId)
+      ) {
+        ideaFeedback.className = 'form-feedback feedback-info';
         ideaFeedback.innerHTML = `
-          <strong>Research Idea Validated (Ready for Backend Integration):</strong><br>
-          Thank you, <em>${escapeHTML(submissionPayload.name)}</em>! Your proposal "<strong>${escapeHTML(submissionPayload.title)}</strong>" in the domain <em>${escapeHTML(submissionPayload.area)}</em> has passed all client-side validation checks.<br><br>
+          <strong>Proposal Validated (Awaiting EmailJS Credentials):</strong><br>
+          Thank you, <em>${escapeHTML(templateParams.from_name)}</em>! Your research proposal "<strong>${escapeHTML(templateParams.idea_title)}</strong>" in the domain <em>${escapeHTML(templateParams.idea_area)}</em> has passed all client-side validation checks.<br><br>
+          To automatically route live submissions to <strong>binoysarker2003@gmail.com</strong>, configure your EmailJS keys in <code>EMAILJS_CONFIG</code> at the top of <code>script.js</code>:<br>
+          • <code>publicKey</code>: Replace <code>'YOUR_EMAILJS_PUBLIC_KEY'</code><br>
+          • <code>serviceId</code>: Replace <code>'YOUR_EMAILJS_SERVICE_ID'</code><br>
+          • <code>researchTemplateId</code>: Replace <code>'YOUR_RESEARCH_TEMPLATE_ID'</code><br><br>
           <span style="color: #A0A0A0; font-size: 0.85rem;">
-            <em>Notice:</em> A live backend endpoint or webhook is not currently connected in this static setup. To automatically collect submissions or post them to a public community research board, configure <code>RESEARCH_IDEA_ENDPOINT</code> at the top of <code>script.js</code> (e.g., Formspree, Supabase, or a serverless function).
+            Direct inquiries can also be sent directly to <a href="mailto:binoysarker2003@gmail.com" class="email-clickable">binoysarker2003@gmail.com</a>.
           </span>
         `;
         ideaFeedback.removeAttribute('hidden');
-        ideaForm.reset();
-        showToast('Idea validated. Submission endpoint required for live persistence.');
+        showToast('Idea validated. Enter EmailJS keys in script.js to send email.');
+        return;
+      }
+
+      // Live EmailJS Transmission
+      isSubmittingIdea = true;
+      setButtonLoading(ideaSubmitBtn, true, 'Submitting Idea...');
+      ideaFeedback.setAttribute('hidden', '');
+
+      try {
+        if (typeof emailjs === 'undefined') {
+          throw new Error('EmailJS SDK is not loaded. Please check your network connection.');
+        }
+
+        const response = await emailjs.send(
+          EMAILJS_CONFIG.serviceId,
+          EMAILJS_CONFIG.researchTemplateId,
+          templateParams,
+          EMAILJS_CONFIG.publicKey
+        );
+
+        if (response && (response.status === 200 || response.text === 'OK')) {
+          ideaFeedback.className = 'form-feedback feedback-success';
+          ideaFeedback.innerHTML = `
+            <strong>Research Idea Transmitted Successfully:</strong><br>
+            Thank you, <em>${escapeHTML(templateParams.from_name)}</em>. Your research idea "<strong>${escapeHTML(templateParams.idea_title)}</strong>" in <em>${escapeHTML(templateParams.idea_area)}</em> has been forwarded directly to Binoy Sarker (<code>binoysarker2003@gmail.com</code>). We look forward to exploring this collaborative direction.
+          `;
+          ideaFeedback.removeAttribute('hidden');
+          ideaForm.reset();
+          showToast('Research idea transmitted to binoysarker2003@gmail.com.');
+        } else {
+          throw new Error(response ? `Status ${response.status}: ${response.text}` : 'Email transmission failed.');
+        }
+      } catch (err) {
+        console.error('EmailJS Research Idea Delivery Error:', err);
+        ideaFeedback.className = 'form-feedback feedback-error';
+        ideaFeedback.innerHTML = `
+          <strong>Submission Service Error:</strong><br>
+          Unable to deliver idea via EmailJS (${escapeHTML(err.text || err.message || 'Network error')}).<br>
+          Please verify your Service ID and Template ID in <code>script.js</code>, or send your proposal directly to <a href="mailto:binoysarker2003@gmail.com" class="email-clickable">binoysarker2003@gmail.com</a>.
+        `;
+        ideaFeedback.removeAttribute('hidden');
+        showToast('Submission error. Please email binoysarker2003@gmail.com directly.');
+      } finally {
+        isSubmittingIdea = false;
+        setButtonLoading(ideaSubmitBtn, false, 'Submit Research Idea');
       }
     });
   }
 
-  // 10. Contact Form Validation
+  // 10. Contact Form Handler (EmailJS Integration)
   const contactForm = document.getElementById('contact-form');
   const formFeedback = document.getElementById('form-feedback');
+  const contactSubmitBtn = document.getElementById('contact-submit-btn');
+  let isSubmittingContact = false;
 
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+
+      if (isSubmittingContact) return; // Prevent duplicate submissions while in progress
 
       const nameInput = document.getElementById('form-name');
       const emailInput = document.getElementById('form-email');
@@ -478,17 +530,86 @@ document.addEventListener('DOMContentLoaded', () => {
         messageError.setAttribute('hidden', '');
       }
 
-      if (isValid) {
-        const userName = nameInput.value.trim();
-        if (formFeedback) {
+      if (!isValid) return;
+
+      const templateParams = {
+        to_email: 'binoysarker2003@gmail.com',
+        from_name: nameInput.value.trim(),
+        reply_to: emailInput.value.trim(),
+        from_email: emailInput.value.trim(),
+        subject: subjectInput.value.trim(),
+        message: messageInput.value.trim(),
+        submitted_at: new Date().toLocaleString('en-US', {
+          dateStyle: 'full',
+          timeStyle: 'medium'
+        })
+      };
+
+      // Check if EmailJS credentials are configured or placeholder
+      if (
+        isConfigPlaceholder(EMAILJS_CONFIG.publicKey) ||
+        isConfigPlaceholder(EMAILJS_CONFIG.serviceId) ||
+        isConfigPlaceholder(EMAILJS_CONFIG.contactTemplateId)
+      ) {
+        formFeedback.className = 'form-feedback feedback-info';
+        formFeedback.innerHTML = `
+          <strong>Message Validated (Awaiting EmailJS Credentials):</strong><br>
+          Thank you, <em>${escapeHTML(templateParams.from_name)}</em>! Your message has passed all validation checks.<br><br>
+          To automatically route messages to <strong>binoysarker2003@gmail.com</strong>, configure your EmailJS keys in <code>EMAILJS_CONFIG</code> at the top of <code>script.js</code>:<br>
+          • <code>publicKey</code>: Replace <code>'YOUR_EMAILJS_PUBLIC_KEY'</code><br>
+          • <code>serviceId</code>: Replace <code>'YOUR_EMAILJS_SERVICE_ID'</code><br>
+          • <code>contactTemplateId</code>: Replace <code>'YOUR_CONTACT_TEMPLATE_ID'</code><br><br>
+          <span style="color: #A0A0A0; font-size: 0.85rem;">
+            Direct inquiries can also be sent directly to <a href="mailto:binoysarker2003@gmail.com" class="email-clickable">binoysarker2003@gmail.com</a>.
+          </span>
+        `;
+        formFeedback.removeAttribute('hidden');
+        showToast('Message validated. Enter EmailJS keys in script.js to send email.');
+        return;
+      }
+
+      // Live EmailJS Transmission
+      isSubmittingContact = true;
+      setButtonLoading(contactSubmitBtn, true, 'Sending message...');
+      formFeedback.setAttribute('hidden', '');
+
+      try {
+        if (typeof emailjs === 'undefined') {
+          throw new Error('EmailJS SDK is not loaded. Please check your network connection.');
+        }
+
+        const response = await emailjs.send(
+          EMAILJS_CONFIG.serviceId,
+          EMAILJS_CONFIG.contactTemplateId,
+          templateParams,
+          EMAILJS_CONFIG.publicKey
+        );
+
+        if (response && (response.status === 200 || response.text === 'OK')) {
+          formFeedback.className = 'form-feedback feedback-success';
           formFeedback.innerHTML = `
-            <strong>Message Received in Demo Interface:</strong><br>
-            Thank you, <em>${escapeHTML(userName)}</em>. As indicated in the notice above, this site currently operates as a static front-end. For direct inquiries, feel free to email <a href="mailto:binoysarker2003@gmail.com" style="color: #FFFFFF; text-decoration: underline;">binoysarker2003@gmail.com</a> directly or connect this form to a backend service such as Formspree.
+            <strong>Message Sent Successfully:</strong><br>
+            Thank you, <em>${escapeHTML(templateParams.from_name)}</em>. Your inquiry regarding "<strong>${escapeHTML(templateParams.subject)}</strong>" has been delivered directly to Binoy Sarker (<code>binoysarker2003@gmail.com</code>). You will receive a response shortly.
           `;
           formFeedback.removeAttribute('hidden');
+          contactForm.reset();
+          showToast('Message delivered to binoysarker2003@gmail.com.');
+        } else {
+          throw new Error(response ? `Status ${response.status}: ${response.text}` : 'Email transmission failed.');
         }
-        contactForm.reset();
-        showToast('Demo submission recorded.');
+      } catch (err) {
+        console.error('EmailJS Contact Form Delivery Error:', err);
+        formFeedback.className = 'form-feedback feedback-error';
+        formFeedback.innerHTML = `
+          <strong>Message Delivery Error:</strong><br>
+          Unable to deliver message via EmailJS (${escapeHTML(err.text || err.message || 'Network error')}).<br>
+          Please verify your Service ID and Template ID in <code>script.js</code>, or email directly at <a href="mailto:binoysarker2003@gmail.com" class="email-clickable">binoysarker2003@gmail.com</a>.
+        `;
+        formFeedback.removeAttribute('hidden');
+        showToast('Delivery error. Please email binoysarker2003@gmail.com directly.');
+      } finally {
+        isSubmittingContact = false;
+        setButtonLoading(contactSubmitBtn, false, 'Submit Message');
       }
     });
   }
@@ -535,6 +656,10 @@ document.addEventListener('DOMContentLoaded', () => {
       btnText.textContent = text;
     } else {
       btn.textContent = text;
+    }
+    const arrow = btn.querySelector('.arrow-icon');
+    if (arrow) {
+      arrow.style.display = isLoading ? 'none' : 'inline';
     }
   }
 

@@ -1566,6 +1566,21 @@ main {
   display: block;
 }
 
+.form-feedback.feedback-success {
+  border: 1px solid var(--color-white);
+  background-color: #242424;
+}
+
+.form-feedback.feedback-error {
+  border: 1px solid #888888;
+  background-color: #1a1a1a;
+}
+
+.form-feedback.feedback-info {
+  border: 1px dashed #666666;
+  background-color: #202020;
+}
+
 /* --- Editorial Footer --- */
 .site-footer {
   border-top: 1px solid var(--color-border-subtle);

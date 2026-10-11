@@ -629,7 +629,7 @@
                 <div class="form-notice">
                   <span class="notice-icon">ℹ</span>
                   <span class="notice-text">
-                    <strong>Submission Service Architecture:</strong> This form validates submissions on the client side. Live storage or public board posting can be enabled by specifying a backend endpoint in <code>script.js</code>.
+                    <strong>Direct Routing:</strong> Submissions are dispatched directly to <a href="mailto:binoysarker2003@gmail.com" class="email-clickable">binoysarker2003@gmail.com</a> via EmailJS.
                   </span>
                 </div>
 
@@ -917,7 +917,7 @@
                 <div class="form-notice">
                   <span class="notice-icon">ℹ</span>
                   <span class="notice-text">
-                    <strong>Notice:</strong> This is a client-side interface. A backend or email routing service (e.g., Formspree, Netlify Forms, or EmailJS) can be configured to dispatch messages directly.
+                    <strong>Direct Routing:</strong> Inquiries are sent directly to <a href="mailto:binoysarker2003@gmail.com" class="email-clickable">binoysarker2003@gmail.com</a> via EmailJS.
                   </span>
                 </div>
 
@@ -945,8 +945,9 @@
                   <span class="form-error" id="message-error" hidden>Please enter your message.</span>
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-block">
-                  Submit Message <span class="arrow-icon" aria-hidden="true">→</span>
+                <button type="submit" class="btn btn-primary btn-block" id="contact-submit-btn">
+                  <span class="btn-text">Submit Message</span>
+                  <span class="arrow-icon" aria-hidden="true">→</span>
                 </button>
 
                 <div class="form-feedback" id="form-feedback" role="alert" hidden></div>
@@ -1006,6 +1007,9 @@
 
   <!-- Toast Notification Container -->
   <div class="toast-notification" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <!-- Official EmailJS Browser SDK (v4) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <!-- Vanilla Script -->
   <script src="script.js"></script>
