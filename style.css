@@ -356,6 +356,8 @@ main {
 /* Portrait Frame */
 .portrait-wrapper {
   margin: 0.5rem 0;
+  position: relative;
+  max-width: 580px;
 }
 
 .portrait-frame {
@@ -368,6 +370,51 @@ main {
   overflow: hidden;
   position: relative;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Floating GitHub Contributions Card (Matched to Reference Screenshot) */
+.hero-contrib-card {
+  position: absolute;
+  bottom: 28px;
+  right: -16px;
+  background-color: #121316;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 0.85rem 1.4rem 0.95rem;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  cursor: pointer;
+}
+
+.hero-contrib-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.85);
+}
+
+.contrib-number {
+  color: #00C950;
+  font-family: var(--font-main);
+  font-size: 1.85rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.contrib-label {
+  color: #9E9EA7;
+  font-family: var(--font-main);
+  font-size: 0.825rem;
+  font-weight: 400;
+  margin-top: 4px;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
 .portrait-img {
@@ -1151,6 +1198,258 @@ main {
 .interest-tag:hover {
   border-color: var(--color-border);
   background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* --- Download My Resume Section --- */
+.resume-section {
+  scroll-margin-top: 90px;
+}
+
+.resume-container {
+  width: 100%;
+}
+
+.resume-card {
+  background-color: #16171A;
+  border: 1px solid #28282E;
+  border-radius: 20px;
+  padding: clamp(1.75rem, 3.5vw, 3rem);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  transition: border-color var(--transition-fast);
+}
+
+.resume-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.resume-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #24252B;
+}
+
+.resume-badge-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.resume-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  background-color: rgba(0, 201, 80, 0.08);
+  border: 1px solid rgba(0, 201, 80, 0.28);
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #00C950;
+  font-weight: 500;
+}
+
+.status-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #00C950;
+  box-shadow: 0 0 8px #00C950;
+}
+
+.resume-format-badge,
+.resume-lang-badge,
+.file-size-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #9E9EA7;
+  background-color: #202126;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #2A2B32;
+}
+
+.resume-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.resume-identity-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid #24252B;
+}
+
+.resume-person-name {
+  font-size: clamp(1.75rem, 3.5vw, 2.35rem);
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.resume-person-role {
+  font-size: 1rem;
+  color: #00C950;
+  font-weight: 500;
+  margin-top: 0.35rem;
+}
+
+.resume-person-sub {
+  font-family: var(--font-mono);
+  font-size: 0.825rem;
+  color: #8E8E98;
+  margin-top: 0.25rem;
+}
+
+.btn-resume-main {
+  padding: 0.85rem 1.75rem;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+}
+
+.resume-summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.resume-summary-col {
+  background-color: #121316;
+  border: 1px solid #24252B;
+  border-radius: 14px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.resume-col-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #24252B;
+}
+
+.resume-col-icon {
+  font-size: 1.1rem;
+}
+
+.resume-timeline-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.resume-item-main {
+  font-weight: 600;
+  color: #E5E5E5;
+  font-size: 0.95rem;
+}
+
+.resume-item-inst {
+  color: #A0A0A0;
+  font-size: 0.85rem;
+  font-family: var(--font-mono);
+}
+
+.resume-item-desc {
+  color: #8E8E98;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+.resume-item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.25rem;
+}
+
+.tag-pill {
+  background-color: #1E1F24;
+  color: #C5C5CD;
+  font-size: 0.775rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  border: 1px solid #2C2D35;
+  font-family: var(--font-mono);
+}
+
+.resume-skills-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.resume-skill-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.875rem;
+}
+
+.resume-skill-label {
+  color: #00C950;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.resume-skill-val {
+  color: #C5C5CD;
+  line-height: 1.45;
+}
+
+.resume-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #24252B;
+}
+
+.resume-action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  align-items: center;
+}
+
+.resume-verification-note {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.775rem;
+  color: #8E8E98;
+}
+
+.note-lock-icon {
+  color: #00C950;
+  font-weight: bold;
 }
 
 /* --- Contact Section (Modern Editorial Reference) --- */
