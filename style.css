@@ -2298,6 +2298,11 @@ main {
   .site-footer {
     padding: 2rem;
   }
+
+  .resume-summary-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 }
 
 /* Mobile Viewports */
@@ -2341,6 +2346,20 @@ main {
     height: 380px;
   }
 
+  .hero-contrib-card {
+    right: 12px;
+    bottom: 24px;
+    padding: 0.75rem 1.15rem 0.85rem;
+  }
+
+  .contrib-number {
+    font-size: 1.55rem;
+  }
+
+  .contrib-label {
+    font-size: 0.775rem;
+  }
+
   .hero-actions {
     flex-direction: column;
     align-items: stretch;
@@ -2374,6 +2393,35 @@ main {
     padding: 1.5rem;
   }
 
+  .resume-identity-block {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .resume-identity-action {
+    width: 100%;
+  }
+
+  .resume-identity-action .btn {
+    width: 100%;
+  }
+
+  .resume-card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .resume-action-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .resume-action-buttons .btn {
+    width: 100%;
+  }
+
   .form-row-2 {
     grid-template-columns: 1fr;
     gap: 0;
@@ -2403,6 +2451,25 @@ main {
 
   .portrait-img {
     height: 320px;
+  }
+
+  .hero-contrib-card {
+    right: 8px;
+    bottom: 18px;
+    padding: 0.65rem 0.95rem 0.75rem;
+    border-radius: 12px;
+  }
+
+  .contrib-number {
+    font-size: 1.35rem;
+  }
+
+  .contrib-label {
+    font-size: 0.725rem;
+  }
+
+  .resume-card {
+    padding: 1.35rem;
   }
 
   .article-button {
