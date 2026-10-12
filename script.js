@@ -137,6 +137,32 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(section => spyObserver.observe(section));
   }
 
+  // 4b. Back to Top Smooth Scrolling Handler
+  const backToTopLinks = document.querySelectorAll('.back-to-top, a[href="#top"]');
+  backToTopLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+      document.documentElement.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+      document.body.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+      if (window.history && window.history.pushState) {
+        window.history.pushState(null, null, '#top');
+      }
+    });
+  });
+
   // 5. Featured Articles Accordion / Details Drawer
   const articleButtons = document.querySelectorAll('.article-button');
   articleButtons.forEach(button => {
