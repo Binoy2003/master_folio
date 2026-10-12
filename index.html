@@ -19,10 +19,15 @@
   <!-- Favicon -->
   <link rel="icon" type="image/jpeg" href="assets/favicon_2.jpeg">
 
-  <!-- Typography: Inter & JetBrains Mono for clean editorial sans-serif aesthetic -->
+  <!-- Preload Custom Aeonik Display Font & Fraunces Editorial Serif -->
+  <link rel="preload" href="assets/Aeonik.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/Aeonik-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/Fraunces.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Typography: Fraunces, Inter & JetBrains Mono for clean editorial aesthetic -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css">
 </head>
@@ -40,7 +45,7 @@
         <div class="header-inner">
           <div class="brand">
             <a href="#top" class="brand-link" aria-label="Binoy Sarker Home">
-              <span class="brand-name">Binoy Sarker</span>
+              <span class="brand-name">BINOY SARKER</span>
               <span class="brand-sub">CSE / Editorial</span>
             </a>
           </div>
@@ -90,7 +95,7 @@
           <!-- LEFT COLUMN: Profile, Heading & Narrative Intro -->
           <div class="hero-left reveal-on-scroll">
             <div class="name-block">
-              <h1 class="hero-name">Binoy Sarker</h1>
+              <h1 class="hero-name">BINOY SARKER</h1>
               <p class="hero-identity">CSE Undergraduate <span class="divider-sep">|</span> Features Writer</p>
             </div>
 
@@ -712,69 +717,117 @@
         <!-- Divider -->
         <hr class="section-divider">
 
-        <!-- About Me Section -->
-        <section class="section about-section reveal-on-scroll" id="about">
-          <div class="section-intro">
-            <span class="section-label">Background & Narrative</span>
-            <h2 class="section-heading">About Me</h2>
+        <!-- About Section (Editorial Two-Column Layout with Integrated Resume Download) -->
+        <section class="section about-section reveal-on-scroll" id="about" itemscope itemtype="https://schema.org/AboutPage">
+          <div class="about-header">
+            <span class="editorial-label">( 01 )</span>
+            <h2 class="about-title">About</h2>
           </div>
 
-          <div class="about-grid">
-            <div class="about-narrative">
-              <p class="about-lead">
-                I'm a Computer Science and Engineering undergraduate at United International University, exploring the intersection of data, technology, and research. Recently, I've been exploring research in Bioinformatics and Machine Learning, learning how computational methods and data-driven approaches can help investigate meaningful problems. I'm interested in analytical problem-solving, Data Science, and communicating complex ideas through clear writing. I'm continuously learning, experimenting, and looking for opportunities to collaborate on interesting research questions.
-              </p>
-              <p>
-                My approach is grounded in continuous learning—building strong conceptual intuition in algorithms and software design while examining real-world datasets. Rather than treating technical skills as isolated tools, I enjoy combining computational methods with storytelling to make technical insights accessible and impactful.
-              </p>
-              <p>
-                I welcome discussions and potential collaborations with fellow students, researchers, and mentors interested in computational biology, data analysis, or machine learning applications.
-              </p>
+          <div class="about-editorial-grid">
+            <!-- Left Column: Narrative Bio + Resume Button & Email -->
+            <div class="about-bio-col">
+              <div class="about-bio-text">
+                <p>
+                  I'm a Computer Science and Engineering undergraduate at United International University, exploring the intersection of data, technology, and research. Recently, I've been exploring research in Bioinformatics and Machine Learning, learning how computational methods and data-driven approaches can help investigate meaningful problems.
+                </p>
+                <p>
+                  My approach is grounded in continuous learning—building strong conceptual intuition in algorithms and software design while examining real-world datasets. Rather than treating technical skills as isolated tools, I enjoy combining computational methods with storytelling to make technical insights accessible and impactful.
+                </p>
+                <p class="about-bio-muted">
+                  I welcome discussions and potential collaborations with fellow students, researchers, and mentors interested in computational biology, data analysis, or machine learning applications.
+                </p>
+              </div>
 
-              <!-- University Campus Affiliations -->
-              <div class="affiliations-box">
-                <h3 class="affiliations-title">University Club Memberships</h3>
-                <ul class="affiliations-list">
-                  <li>
-                    <span class="affil-role">General Member</span>
-                    <span class="affil-org">UIU Data Science Club</span>
-                  </li>
-                  <li>
-                    <span class="affil-role">General Member</span>
-                    <span class="affil-org">UIU Computer Club</span>
-                  </li>
-                  <li>
-                    <span class="affil-role">General Member</span>
-                    <span class="affil-org">UIU Entrepreneur Development Forum</span>
-                  </li>
-                </ul>
+              <!-- Resume Download & Contact Email Segment (Replicating Reference) -->
+              <div class="about-actions-row" id="resume">
+                <a href="assets/Binoy_Sarker_Resume.pdf" download="Binoy_Sarker_Resume.pdf" class="btn-editorial-resume" id="resume-download-btn" aria-label="Download Resume">
+                  <span>Resume</span>
+                  <span class="resume-arrow-icon" aria-hidden="true">↓</span>
+                </a>
+                <a href="mailto:binoysarker2003@gmail.com" class="about-email-link" aria-label="Send email to binoysarker2003@gmail.com">
+                  binoysarker2003@gmail.com
+                </a>
               </div>
             </div>
 
-            <!-- Aside: Editorial Highlights / Quick Facts -->
-            <div class="about-aside">
-              <div class="aside-block">
-                <h4 class="aside-label">Institution</h4>
-                <p class="aside-value">United International University (UIU)</p>
-                <p class="aside-sub">Dhaka, Bangladesh</p>
+            <!-- Right Column: Experience Ledger -->
+            <div class="about-experience-col">
+              <p class="editorial-label mb-3">[ Experience ]</p>
+              <ul class="experience-ledger" role="list">
+                <li class="ledger-item">
+                  <div class="ledger-header">
+                    <h3 class="exp-org-title">UIU Data Science Club</h3>
+                    <span class="exp-date">AUG 2024 — PRESENT</span>
+                  </div>
+                  <p class="exp-role">GENERAL MEMBER</p>
+                  <p class="exp-note">
+                    Exploring data science methodologies, predictive modeling, machine learning workflows, and active participation in university workshop sessions.
+                  </p>
+                </li>
+
+                <li class="ledger-item">
+                  <div class="ledger-header">
+                    <h3 class="exp-org-title">UIU Computer Club</h3>
+                    <span class="exp-date">2024 — PRESENT</span>
+                  </div>
+                  <p class="exp-role">GENERAL MEMBER</p>
+                  <p class="exp-note">
+                    Engaging in algorithmic problem solving, competitive programming sessions, and technical community collaborations.
+                  </p>
+                </li>
+
+                <li class="ledger-item">
+                  <div class="ledger-header">
+                    <h3 class="exp-org-title">UIU Entrepreneur Development Forum</h3>
+                    <span class="exp-date">2024 — PRESENT</span>
+                  </div>
+                  <p class="exp-role">GENERAL MEMBER</p>
+                  <p class="exp-note">
+                    Participating in student innovation forums, startup ideation, and collaborative project leadership programs.
+                  </p>
+                </li>
+
+                <li class="ledger-item ledger-item-academic">
+                  <div class="ledger-header">
+                    <h3 class="exp-org-title">B.Sc. in Computer Science &amp; Engineering — UIU</h3>
+                    <span class="exp-date">2023 — PRESENT</span>
+                  </div>
+                  <p class="exp-role">UNITED INTERNATIONAL UNIVERSITY</p>
+                  <p class="exp-note">
+                    Undergraduate coursework focusing on data structures, algorithms, databases, bioinformatics, and machine learning foundations.
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Bottom Highlights & Competencies Strip -->
+          <div class="about-recognition-strip">
+            <p class="editorial-label mb-4">[ Focus &amp; Competencies ]</p>
+            <div class="recognition-grid">
+              <div class="recognition-card">
+                <span class="recognition-meta">BIOINFORMATICS &amp; ML</span>
+                <h4 class="recognition-title">Genomics &amp; Predictive Models</h4>
+                <p class="recognition-desc">Investigating sequence patterns, computational biology, and explainable models.</p>
               </div>
 
-              <div class="aside-block">
-                <h4 class="aside-label">Degree Focus</h4>
-                <p class="aside-value">B.Sc. in Computer Science & Engineering</p>
-                <p class="aside-sub">Undergraduate Student</p>
+              <div class="recognition-card">
+                <span class="recognition-meta">DATA SCIENCE</span>
+                <h4 class="recognition-title">Analytical Inquiry</h4>
+                <p class="recognition-desc">Exploratory data analysis, statistical reasoning, and clear storytelling from signals.</p>
               </div>
 
-              <div class="aside-block">
-                <h4 class="aside-label">Research Focus</h4>
-                <p class="aside-value">Bioinformatics &amp; Machine Learning</p>
-                <p class="aside-sub">Exploring computational inquiry and data-driven methods</p>
+              <div class="recognition-card">
+                <span class="recognition-meta">SYSTEMS &amp; WEB</span>
+                <h4 class="recognition-title">Full-Stack Architecture</h4>
+                <p class="recognition-desc">Building academic LMS platforms, security utilities, and civic Telegram bots.</p>
               </div>
 
-              <div class="aside-block">
-                <h4 class="aside-label">Dual Practice</h4>
-                <p class="aside-value">Computing &amp; Feature Writing</p>
-                <p class="aside-sub">Combining technical foundations with clear storytelling</p>
+              <div class="recognition-card">
+                <span class="recognition-meta">COLLABORATIVE RESEARCH</span>
+                <h4 class="recognition-title">Open Discourse &amp; Writing</h4>
+                <p class="recognition-desc">Bridging algorithmic computing with human narratives and student research ideas.</p>
               </div>
             </div>
           </div>
@@ -858,23 +911,6 @@
                 <li class="interest-tag">Computer Science & Technology</li>
               </ul>
             </div>
-          </div>
-        </section>
-
-        <!-- Divider -->
-        <hr class="section-divider">
-
-        <!-- Resume Section: Direct Download Button -->
-        <section class="section resume-section reveal-on-scroll" id="resume">
-          <div class="resume-container">
-            <a href="assets/Binoy_Sarker_Resume.pdf" download="Binoy_Sarker_Resume.pdf" class="btn btn-primary btn-resume" id="resume-download-btn" aria-label="Download Resume">
-              <span>Resume</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="download-icon" aria-hidden="true">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                <polyline points="7 10 12 15 17 10"/>
-                <line x1="12" y1="15" x2="12" y2="3"/>
-              </svg>
-            </a>
           </div>
         </section>
 
@@ -1044,7 +1080,7 @@
       <footer class="site-footer">
         <div class="footer-inner">
           <div class="footer-left">
-            <span class="footer-name">Binoy Sarker</span>
+            <span class="footer-name">BINOY SARKER</span>
             <span class="footer-location">Dhaka, Bangladesh</span>
             <span class="footer-copy">
               &copy; <span id="current-year">2026</span> Binoy Sarker. All rights reserved.
