@@ -896,9 +896,10 @@ main {
 }
 
 .project-title {
+  font-family: var(--font-display);
   font-size: 1.45rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: 500;
+  letter-spacing: -0.015em;
   color: var(--color-white);
 }
 
@@ -972,121 +973,234 @@ main {
   width: 100%;
 }
 
-/* --- About Me Section --- */
-.about-grid {
+/* --- Editorial About Section (Matching Reference Aesthetic) --- */
+.about-section {
+  scroll-margin-top: 90px;
+  width: 100%;
+}
+
+.about-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 2.25rem;
+}
+
+.editorial-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.about-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--color-white);
+}
+
+.about-editorial-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 3.5rem;
+  grid-template-columns: 5fr 7fr;
+  gap: clamp(2.5rem, 4vw, 4rem);
   align-items: start;
 }
 
-.about-narrative {
+/* Bio Narrative Column */
+.about-bio-col {
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
 }
 
-.about-lead {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: var(--color-white);
-  font-weight: 500;
+.about-bio-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
 }
 
-.about-narrative p {
-  color: var(--color-text-secondary);
-  font-size: 1.025rem;
-  line-height: 1.7;
+.about-bio-text p {
+  font-size: 0.9375rem; /* 15px matching reference */
+  line-height: 1.68;
+  color: rgba(245, 245, 245, 0.9);
 }
 
-.affiliations-box {
-  margin-top: 1rem;
-  padding: 1.75rem;
-  background-color: var(--color-panel-subtle);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--card-radius);
+.about-bio-muted {
+  color: var(--color-text-muted) !important;
 }
 
-.affiliations-title {
-  font-size: 1.05rem;
+/* Resume Download & Email Actions Row (Replicating Reference) */
+.about-actions-row {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem 1.75rem;
+  scroll-margin-top: 100px;
+}
+
+.btn-editorial-resume {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background-color: var(--color-white);
+  color: #171717;
+  padding: 0.75rem 1.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem; /* 12px */
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   font-weight: 600;
-  color: var(--color-text-primary);
+  text-decoration: none;
+  border-radius: 2px;
+  border: 1px solid var(--color-white);
+  transition: background-color var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.btn-editorial-resume:hover {
+  background-color: #E2E2E2;
+  border-color: #E2E2E2;
+  transform: translateY(-1px);
+}
+
+.resume-arrow-icon {
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: inline-block;
+  transition: transform var(--transition-fast);
+}
+
+.btn-editorial-resume:hover .resume-arrow-icon {
+  transform: translateY(2px);
+}
+
+.about-email-link {
+  font-family: var(--font-mono);
+  font-size: 0.75rem; /* 12px */
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.about-email-link:hover {
+  color: var(--color-white);
+  text-decoration: underline;
+}
+
+/* Experience Ledger Column */
+.about-experience-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+
+.mb-4 {
   margin-bottom: 1rem;
 }
 
-.affiliations-list {
+.experience-ledger {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
 }
 
-.affiliations-list li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 0.65rem;
-  border-bottom: 1px dashed var(--color-border-subtle);
-  font-size: 0.95rem;
-}
-
-.affiliations-list li:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.affil-role {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--color-text-muted);
-}
-
-.affil-org {
-  color: var(--color-white);
-  font-weight: 500;
-}
-
-/* About Aside */
-.about-aside {
+.ledger-item {
+  padding: 1.15rem 0;
+  border-top: 1px solid var(--color-border-subtle);
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  background-color: var(--color-panel-subtle);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--card-radius);
-  padding: 2rem;
 }
 
-.aside-block {
-  border-bottom: 1px solid var(--color-border-subtle);
-  padding-bottom: 1.25rem;
+.ledger-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
 }
 
-.aside-block:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+.exp-org-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1.8vw, 1.3rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--color-white);
 }
 
-.aside-label {
+.exp-date {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.6875rem; /* 11px */
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
   color: var(--color-text-muted);
-  margin-bottom: 0.35rem;
 }
 
-.aside-value {
-  font-size: 1.1rem;
+.exp-role {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem; /* 11px */
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-top: 0.25rem;
+}
+
+.exp-note {
+  font-family: var(--font-main);
+  font-size: 0.845rem; /* 13.5px */
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-top: 0.45rem;
+  max-width: 600px;
+}
+
+/* Recognition / Focus Strip */
+.about-recognition-strip {
+  margin-top: 2.75rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.recognition-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.recognition-card {
+  border-top: 1px solid var(--color-text-primary);
+  padding-top: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.recognition-meta {
+  font-family: var(--font-mono);
+  font-size: 0.625rem; /* 10px */
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.recognition-title {
+  font-size: 0.875rem; /* 14px */
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--color-white);
   line-height: 1.35;
 }
 
-.aside-sub {
-  font-size: 0.875rem;
-  color: var(--color-text-secondary);
-  margin-top: 0.25rem;
+.recognition-desc {
+  font-size: 0.8125rem; /* 13px */
+  color: var(--color-text-muted);
+  line-height: 1.5;
 }
 
 /* --- Skills and Interests Section --- */
@@ -1121,8 +1235,9 @@ main {
 }
 
 .skill-group-title {
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
   color: var(--color-white);
   letter-spacing: -0.015em;
 }
@@ -1189,53 +1304,7 @@ main {
   background-color: rgba(255, 255, 255, 0.08);
 }
 
-/* --- Resume Download Section --- */
-.resume-section {
-  scroll-margin-top: 90px;
-  padding: 1.5rem 0 2rem;
-  width: 100%;
-}
 
-.resume-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.btn-resume {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.65rem;
-  padding: 0.9rem 2.25rem;
-  font-size: 1.05rem;
-  font-weight: 600;
-  border-radius: var(--card-radius);
-  background-color: var(--color-white);
-  color: var(--color-black);
-  text-decoration: none;
-  border: 1px solid var(--color-white);
-  transition: all var(--transition-fast);
-  box-shadow: 0 4px 18px rgba(255, 255, 255, 0.12);
-  font-family: var(--font-main);
-  line-height: 1.2;
-}
-
-.btn-resume:hover {
-  background-color: #E2E2E2;
-  border-color: #E2E2E2;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(255, 255, 255, 0.22);
-}
-
-.btn-resume .download-icon {
-  transition: transform var(--transition-fast);
-}
-
-.btn-resume:hover .download-icon {
-  transform: translateY(2px);
-}
 
 /* --- Contact Section (Modern Editorial Reference) --- */
 .contact-section {
@@ -1266,10 +1335,11 @@ main {
 }
 
 .contact-hero-title {
+  font-family: var(--font-display);
   font-size: clamp(2.2rem, 5vw, 3.4rem);
-  font-weight: 700;
+  font-weight: 500;
   color: #FFFFFF;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   line-height: 1.15;
   margin-bottom: 1rem;
   text-align: center;
@@ -1665,8 +1735,9 @@ main {
 }
 
 .research-card-title {
+  font-family: var(--font-display);
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--color-white);
   letter-spacing: -0.015em;
   border-bottom: 1px solid var(--color-border-subtle);
@@ -2082,6 +2153,16 @@ main {
     gap: 2.5rem;
   }
 
+  .about-editorial-grid {
+    grid-template-columns: 1fr;
+    gap: 2.75rem;
+  }
+
+  .recognition-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
   .site-footer {
     padding: 2rem;
   }
@@ -2161,9 +2242,8 @@ main {
     padding: 1.5rem;
   }
 
-  .btn-resume {
-    width: 100%;
-    max-width: 280px;
+  .about-title {
+    font-size: 2.5rem;
   }
 
   .form-row-2 {
@@ -2207,6 +2287,22 @@ main {
 
   .article-title {
     font-size: 1rem;
+  }
+
+  .recognition-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .about-actions-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .ledger-header {
+    flex-direction: column;
+    gap: 0.25rem;
   }
 }
 
