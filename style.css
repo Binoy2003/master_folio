@@ -149,7 +149,7 @@ body {
 .header-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 1.5rem clamp(1.5rem, 4vw, 4.5rem);
   width: 100%;
 }
