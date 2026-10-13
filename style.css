@@ -1944,9 +1944,15 @@ main {
   padding: 2.5rem;
 }
 
+.form-input.has-error,
+.form-textarea.has-error,
+.form-select.has-error {
+  border-color: #ef4444 !important;
+}
+
 .form-error {
   font-size: 0.8rem;
-  color: var(--color-text-primary);
+  color: #f87171;
   font-family: var(--font-mono);
 }
 
@@ -1957,12 +1963,11 @@ main {
 .form-feedback {
   margin-top: 1.25rem;
   padding: 1.25rem;
-  border: 1px solid var(--color-white);
+  border-radius: var(--card-radius);
   background-color: var(--color-panel-elevated);
   color: var(--color-white);
   font-size: 0.9rem;
   line-height: 1.55;
-  border-radius: var(--card-radius);
 }
 
 .form-feedback:not([hidden]) {
@@ -1970,18 +1975,21 @@ main {
 }
 
 .form-feedback.feedback-success {
-  border: 1px solid var(--color-white);
-  background-color: #242424;
+  border: 1px solid #10b981;
+  border-left: 4px solid #10b981;
+  background-color: #17231c;
 }
 
 .form-feedback.feedback-error {
-  border: 1px solid #888888;
-  background-color: #1a1a1a;
+  border: 1px solid #ef4444;
+  border-left: 4px solid #ef4444;
+  background-color: #241416;
 }
 
 .form-feedback.feedback-info {
-  border: 1px dashed #666666;
-  background-color: #202020;
+  border: 1px solid #60a5fa;
+  border-left: 4px solid #60a5fa;
+  background-color: #16202c;
 }
 
 /* --- Editorial Footer --- */

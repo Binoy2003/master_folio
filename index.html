@@ -632,6 +632,10 @@
             <!-- Right: Idea Submission Form -->
             <div class="research-form-panel">
               <form class="editorial-form" id="research-idea-form" action="https://formspree.io/f/YOUR_RESEARCH_FORMSPREE_ID" method="POST" novalidate>
+                <!-- Formspree Spam Honeypot Protection -->
+                <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none !important;" aria-hidden="true">
+                <input type="hidden" name="_subject" value="New Research Idea Submission - Binoy Sarker Portfolio">
+
                 <div class="form-notice">
                   <span class="notice-icon">ℹ</span>
                   <span class="notice-text">

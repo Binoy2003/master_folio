@@ -30,7 +30,8 @@ function resolveFormspreeEndpoint(endpointOrId) {
   if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
     return trimmed;
   }
-  return `https://formspree.io/f/${trimmed}`;
+  const cleanId = trimmed.replace(/^f\//, '');
+  return `https://formspree.io/f/${cleanId}`;
 }
 
 // Helper to verify whether real credentials have replaced placeholder values
@@ -41,7 +42,8 @@ function isFormspreePlaceholder(val) {
     trimmed === '' ||
     trimmed.includes('YOUR_') ||
     trimmed.includes('YOUR_CONTACT_FORMSPREE_ID') ||
-    trimmed.includes('YOUR_RESEARCH_FORMSPREE_ID')
+    trimmed.includes('YOUR_RESEARCH_FORMSPREE_ID') ||
+    trimmed === 'https://formspree.io/f/'
   );
 }
 
@@ -338,88 +340,134 @@ document.addEventListener('DOMContentLoaded', () => {
   let isSubmittingIdea = false;
 
   if (ideaForm) {
+    const nameInput = document.getElementById('idea-name');
+    const emailInput = document.getElementById('idea-email');
+    const titleInput = document.getElementById('idea-title');
+    const areaSelect = document.getElementById('idea-area');
+    const stageSelect = document.getElementById('idea-stage');
+    const descInput = document.getElementById('idea-description');
+    const linkInput = document.getElementById('idea-link');
+
+    const nameError = document.getElementById('idea-name-error');
+    const emailError = document.getElementById('idea-email-error');
+    const titleError = document.getElementById('idea-title-error');
+    const areaError = document.getElementById('idea-area-error');
+    const descError = document.getElementById('idea-description-error');
+    const linkError = document.getElementById('idea-link-error');
+
+    // Real-time input listeners to clear errors as user corrects them
+    const clearError = (input, errorSpan) => {
+      if (input) input.classList.remove('has-error');
+      if (errorSpan) errorSpan.setAttribute('hidden', '');
+    };
+
+    if (nameInput) nameInput.addEventListener('input', () => clearError(nameInput, nameError));
+    if (emailInput) emailInput.addEventListener('input', () => clearError(emailInput, emailError));
+    if (titleInput) titleInput.addEventListener('input', () => clearError(titleInput, titleError));
+    if (areaSelect) areaSelect.addEventListener('change', () => clearError(areaSelect, areaError));
+    if (descInput) descInput.addEventListener('input', () => clearError(descInput, descError));
+    if (linkInput) linkInput.addEventListener('input', () => clearError(linkInput, linkError));
+
     ideaForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      if (isSubmittingIdea) return; // Prevent duplicate clicks while in progress
-
-      const nameInput = document.getElementById('idea-name');
-      const emailInput = document.getElementById('idea-email');
-      const titleInput = document.getElementById('idea-title');
-      const areaSelect = document.getElementById('idea-area');
-      const stageSelect = document.getElementById('idea-stage');
-      const descInput = document.getElementById('idea-description');
-      const linkInput = document.getElementById('idea-link');
-
-      const nameError = document.getElementById('idea-name-error');
-      const emailError = document.getElementById('idea-email-error');
-      const titleError = document.getElementById('idea-title-error');
-      const areaError = document.getElementById('idea-area-error');
-      const descError = document.getElementById('idea-description-error');
-      const linkError = document.getElementById('idea-link-error');
+      if (isSubmittingIdea) return; // Prevent duplicate submissions while in progress
 
       let isValid = true;
-      ideaFeedback.setAttribute('hidden', '');
+      let firstInvalidInput = null;
+      if (ideaFeedback) ideaFeedback.setAttribute('hidden', '');
 
       // Name validation
-      if (!nameInput.value.trim()) {
-        nameError.removeAttribute('hidden');
+      if (!nameInput || !nameInput.value.trim()) {
+        if (nameInput) nameInput.classList.add('has-error');
+        if (nameError) nameError.removeAttribute('hidden');
+        if (!firstInvalidInput) firstInvalidInput = nameInput;
         isValid = false;
       } else {
-        nameError.setAttribute('hidden', '');
+        clearError(nameInput, nameError);
       }
 
       // Email validation
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(emailInput.value.trim())) {
-        emailError.removeAttribute('hidden');
+      const emailVal = emailInput ? emailInput.value.trim() : '';
+      if (!emailVal || !emailPattern.test(emailVal)) {
+        if (emailInput) emailInput.classList.add('has-error');
+        if (emailError) emailError.removeAttribute('hidden');
+        if (!firstInvalidInput) firstInvalidInput = emailInput;
         isValid = false;
       } else {
-        emailError.setAttribute('hidden', '');
+        clearError(emailInput, emailError);
       }
 
       // Title validation
-      if (!titleInput.value.trim()) {
-        titleError.removeAttribute('hidden');
+      if (!titleInput || !titleInput.value.trim()) {
+        if (titleInput) titleInput.classList.add('has-error');
+        if (titleError) titleError.removeAttribute('hidden');
+        if (!firstInvalidInput) firstInvalidInput = titleInput;
         isValid = false;
       } else {
-        titleError.setAttribute('hidden', '');
+        clearError(titleInput, titleError);
       }
 
       // Area validation
-      if (!areaSelect.value) {
-        areaError.removeAttribute('hidden');
+      if (!areaSelect || !areaSelect.value) {
+        if (areaSelect) areaSelect.classList.add('has-error');
+        if (areaError) areaError.removeAttribute('hidden');
+        if (!firstInvalidInput) firstInvalidInput = areaSelect;
         isValid = false;
       } else {
-        areaError.setAttribute('hidden', '');
+        clearError(areaSelect, areaError);
       }
 
       // Description validation
-      if (!descInput.value.trim()) {
-        descError.removeAttribute('hidden');
+      if (!descInput || !descInput.value.trim()) {
+        if (descInput) descInput.classList.add('has-error');
+        if (descError) descError.removeAttribute('hidden');
+        if (!firstInvalidInput) firstInvalidInput = descInput;
         isValid = false;
       } else {
-        descError.setAttribute('hidden', '');
+        clearError(descInput, descError);
       }
 
       // Optional Link validation (if provided)
-      const linkVal = linkInput.value.trim();
+      const linkVal = linkInput ? linkInput.value.trim() : '';
       if (linkVal) {
         try {
           const urlObj = new URL(linkVal);
           if (urlObj.protocol !== 'http:' && urlObj.protocol !== 'https:') {
             throw new Error('Invalid protocol');
           }
-          linkError.setAttribute('hidden', '');
+          clearError(linkInput, linkError);
         } catch (_) {
-          linkError.removeAttribute('hidden');
+          if (linkInput) linkInput.classList.add('has-error');
+          if (linkError) linkError.removeAttribute('hidden');
+          if (!firstInvalidInput) firstInvalidInput = linkInput;
           isValid = false;
         }
       } else {
-        linkError.setAttribute('hidden', '');
+        clearError(linkInput, linkError);
       }
 
-      if (!isValid) return;
+      if (!isValid) {
+        if (firstInvalidInput && typeof firstInvalidInput.focus === 'function') {
+          firstInvalidInput.focus();
+        }
+        showToast('Please fill in all required fields marked with *');
+        return;
+      }
+
+      // Spam Bot Protection via honeypot
+      const honeypot = ideaForm.querySelector('input[name="_gotcha"]');
+      if (honeypot && honeypot.value.trim() !== '') {
+        // Silently drop bot submission
+        if (ideaFeedback) {
+          ideaFeedback.className = 'form-feedback feedback-success';
+          ideaFeedback.innerHTML = `<strong>Thank you!</strong> Your submission has been received.`;
+          ideaFeedback.removeAttribute('hidden');
+        }
+        ideaForm.reset();
+        return;
+      }
 
       const targetEndpoint = resolveFormspreeEndpoint(
         FORMSPREE_CONFIG.researchFormEndpoint || ideaForm.getAttribute('action')
@@ -427,32 +475,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Check if Formspree endpoint is configured or placeholder
       if (isFormspreePlaceholder(targetEndpoint)) {
-        ideaFeedback.className = 'form-feedback feedback-info';
-        ideaFeedback.innerHTML = `
-          <strong>Proposal Validated (Formspree Setup Step Required):</strong><br>
-          Thank you, <em>${escapeHTML(nameInput.value.trim())}</em>! Your research proposal "<strong>${escapeHTML(titleInput.value.trim())}</strong>" in the domain <em>${escapeHTML(areaSelect.value)}</em> has passed all client-side validation checks.<br><br>
-          To automatically route live submissions to <strong>binoysarker2003@gmail.com</strong>, configure your Formspree Form ID in <code>FORMSPREE_CONFIG</code> at the top of <code>script.js</code>:<br>
-          • Replace <code>'YOUR_RESEARCH_FORMSPREE_ID'</code> with your Formspree ID (e.g. <code>https://formspree.io/f/mqkbrzen</code>).<br><br>
-          <span style="color: #A0A0A0; font-size: 0.85rem;">
-            Direct inquiries can also be sent directly to <a href="mailto:binoysarker2003@gmail.com" class="email-clickable">binoysarker2003@gmail.com</a>.
-          </span>
-        `;
-        ideaFeedback.removeAttribute('hidden');
-        showToast('Idea validated. Enter Formspree ID in script.js to send email.');
+        if (ideaFeedback) {
+          ideaFeedback.className = 'form-feedback feedback-info';
+          ideaFeedback.innerHTML = `
+            <strong>Formspree Endpoint Configuration Required:</strong><br>
+            All client-side validation checks passed for <em>${escapeHTML(nameInput.value.trim())}</em>'s research idea "<strong>${escapeHTML(titleInput.value.trim())}</strong>".<br><br>
+            To route live email notifications directly to <strong>binoysarker2003@gmail.com</strong>, configure your Formspree Form ID in <code>FORMSPREE_CONFIG</code> in <code>script.js</code>:<br>
+            • Sign up / login at <a href="https://formspree.io" target="_blank" rel="noopener noreferrer" style="color:#ffffff;text-decoration:underline;">formspree.io</a> with <code>binoysarker2003@gmail.com</code>.<br>
+            • Click <strong>+ New Form</strong> and set the notification target to <code>binoysarker2003@gmail.com</code>.<br>
+            • Copy your Form ID (e.g. <code>mqkbrzen</code>) and update <code>researchFormEndpoint</code> at line 23 in <code>script.js</code>.<br><br>
+            <span style="color: #A0A0A0; font-size: 0.85rem;">
+              You can also send your proposal directly via email to <a href="mailto:binoysarker2003@gmail.com" class="email-clickable">binoysarker2003@gmail.com</a>.
+            </span>
+          `;
+          ideaFeedback.removeAttribute('hidden');
+          ideaFeedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        showToast('Form validated. Configure Formspree ID in script.js to send email.');
         return;
       }
 
+      // Construct comprehensive payload mapping all fields cleanly for Formspree
       const payload = {
         name: nameInput.value.trim(),
         email: emailInput.value.trim(),
         _replyto: emailInput.value.trim(),
-        idea_title: titleInput.value.trim(),
-        idea_area: areaSelect.value,
-        idea_stage: stageSelect.value || 'Not specified',
-        idea_description: descInput.value.trim(),
-        idea_link: linkVal || 'None provided',
-        _subject: `[Research Idea] ${titleInput.value.trim()} [${areaSelect.value}] - from ${nameInput.value.trim()}`,
-        submitted_at: new Date().toLocaleString('en-US', {
+        _subject: `[Research Idea] ${titleInput.value.trim()} [${areaSelect.value}] — ${nameInput.value.trim()}`,
+        "Submitter Name": nameInput.value.trim(),
+        "Submitter Email": emailInput.value.trim(),
+        "Research Idea Title": titleInput.value.trim(),
+        "Research Area": areaSelect.value,
+        "Project Stage": (stageSelect && stageSelect.value) ? stageSelect.value : 'Not specified',
+        "Research Description": descInput.value.trim(),
+        "Reference Link": linkVal || 'None provided',
+        "Submission Timestamp": new Date().toLocaleString('en-US', {
           dateStyle: 'full',
           timeStyle: 'medium'
         })
@@ -461,7 +517,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Live Formspree Transmission via fetch
       isSubmittingIdea = true;
       setButtonLoading(ideaSubmitBtn, true, 'Submitting Idea...');
-      ideaFeedback.setAttribute('hidden', '');
+      if (ideaFeedback) ideaFeedback.setAttribute('hidden', '');
 
       try {
         const response = await fetch(targetEndpoint, {
@@ -474,14 +530,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (response.ok) {
-          ideaFeedback.className = 'form-feedback feedback-success';
-          ideaFeedback.innerHTML = `
-            <strong>Research Idea Transmitted Successfully:</strong><br>
-            Thank you, <em>${escapeHTML(payload.name)}</em>. Your research idea "<strong>${escapeHTML(payload.idea_title)}</strong>" in <em>${escapeHTML(payload.idea_area)}</em> has been forwarded directly to Binoy Sarker (<code>binoysarker2003@gmail.com</code>). We look forward to exploring this collaborative direction.
-          `;
-          ideaFeedback.removeAttribute('hidden');
+          if (ideaFeedback) {
+            ideaFeedback.className = 'form-feedback feedback-success';
+            ideaFeedback.innerHTML = `
+              <strong>Research Idea Submitted Successfully!</strong><br>
+              Thank you, <em>${escapeHTML(payload.name)}</em>! Your research idea "<strong>${escapeHTML(payload["Research Idea Title"])}</strong>" in the domain <em>${escapeHTML(payload["Research Area"])}</em> has been forwarded directly to <code>binoysarker2003@gmail.com</code>.<br>
+              We appreciate your initiative and look forward to reviewing your proposal.
+            `;
+            ideaFeedback.removeAttribute('hidden');
+            ideaFeedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
           ideaForm.reset();
-          showToast('Research idea transmitted to binoysarker2003@gmail.com.');
+          [nameInput, emailInput, titleInput, areaSelect, descInput, linkInput].forEach(el => {
+            if (el) el.classList.remove('has-error');
+          });
+          showToast('Research idea transmitted to binoysarker2003@gmail.com');
         } else {
           let errorDetail = 'Formspree submission failed';
           try {
@@ -497,15 +560,18 @@ document.addEventListener('DOMContentLoaded', () => {
           throw new Error(errorDetail);
         }
       } catch (err) {
-        console.error('Formspree Research Idea Delivery Error:', err);
-        ideaFeedback.className = 'form-feedback feedback-error';
-        ideaFeedback.innerHTML = `
-          <strong>Submission Service Error:</strong><br>
-          Unable to deliver proposal via Formspree (${escapeHTML(err.message || 'Network error')}).<br>
-          Please verify your Formspree endpoint in <code>script.js</code>, or send your proposal directly to <a href="mailto:binoysarker2003@gmail.com" class="email-clickable">binoysarker2003@gmail.com</a>.
-        `;
-        ideaFeedback.removeAttribute('hidden');
-        showToast('Submission error. Please email binoysarker2003@gmail.com directly.');
+        console.error('Research Idea Submission Error:', err);
+        if (ideaFeedback) {
+          ideaFeedback.className = 'form-feedback feedback-error';
+          ideaFeedback.innerHTML = `
+            <strong>Submission Delivery Error:</strong><br>
+            Unable to deliver proposal to <code>binoysarker2003@gmail.com</code> (${escapeHTML(err.message || 'Network error')}).<br>
+            Your entered details have been preserved so you can retry, or you can email directly to <a href="mailto:binoysarker2003@gmail.com" class="email-clickable">binoysarker2003@gmail.com</a>.
+          `;
+          ideaFeedback.removeAttribute('hidden');
+          ideaFeedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        showToast('Submission error. Your information has been preserved.');
       } finally {
         isSubmittingIdea = false;
         setButtonLoading(ideaSubmitBtn, false, 'Submit Research Idea');
